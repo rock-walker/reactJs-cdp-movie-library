@@ -4,7 +4,7 @@ import './Components.css';
 class SearchBar extends React.Component {
 	render() {
 		return (
-			<div>Hello, world</div>
+			<input type="text" size="100"/>
 		);
 	}
 }
