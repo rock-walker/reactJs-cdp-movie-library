@@ -8,7 +8,7 @@ class AppHeader extends React.PureComponent {
 			'header', {className: 'App-header'},
 			
 				React.createElement(
-					'img', {src: {logo}, className: 'App-logo', alt: 'logo'},
+					'img', {src: logo, className: 'App-logo', alt: 'logo'},
 						null
 					),
 

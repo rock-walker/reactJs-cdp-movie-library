@@ -1,0 +1,41 @@
+body{
+    font-size: 16px;
+}
+
+
+#searchby {
+    margin:4px;
+}
+
+#searchby #title {
+    float: left;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+#searchby label {
+    float:left;
+    width:80px;
+    margin:4px;
+    background-color:#EFEFEF;
+    border-radius:0px;
+    border:1px solid #D0D0D0;
+    overflow:auto;
+}
+
+#searchby label span {
+    text-align:center;
+
+    padding:8px 0px;
+    display:block;
+}
+
+#searchby label input {
+    position:absolute;
+    top:-20px;
+}
+
+#searchby input:checked + span {
+    background-color:#FF99FF;
+    color:#F7F7F7;
+}

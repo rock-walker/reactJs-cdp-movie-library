@@ -5,6 +5,7 @@ import SearchBar from './SearchBar';
 import SearchFilter from './SearchFilter';
 import SearchButton from './SearchButton';
 import ResultCount from './ResultCount';
+import SortBy from './SortBy';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
         <SearchFilter />
         <SearchButton />
         <ResultCount value={7} />
+        <SortBy />
       </div>
     );
   }
