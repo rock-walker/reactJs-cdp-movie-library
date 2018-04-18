@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import AppHeader from './AppHeader';
+import AppHeader from './Header';
 import SearchBar from './SearchBar';
 import SearchFilter from './SearchFilter';
 import SearchButton from './SearchButton';
@@ -11,11 +11,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <AppHeader />
+        <Header />
         <SearchBar />
         <SearchFilter />
         <SearchButton />
-        <ResultCount value={7} />
+        <ResultCount value=7 />
         <SortBy />
       </div>
     );
