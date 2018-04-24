@@ -11,11 +11,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <AppHeader />
         <SearchBar />
         <SearchFilter />
         <SearchButton />
-        <ResultCount value=7 />
+        <ResultCount value="7" />
         <SortBy />
       </div>
     );
