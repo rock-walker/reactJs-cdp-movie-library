@@ -12,7 +12,7 @@ module.exports = {
 
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'built'),
+        path: path.resolve(__dirname, 'build'),
     },
 
     resolve: {
@@ -50,7 +50,7 @@ module.exports = {
     },
 
     plugins: [
-        new CleanWebpackPlugin(['built']),
+        new CleanWebpackPlugin(['build']),
         new HtmlWebpackPlugin({
             title: 'Production',
             hash: true,
