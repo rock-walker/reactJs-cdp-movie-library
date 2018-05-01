@@ -92,3 +92,8 @@ body{
 .statusBar input:checked + label {
     color:#f55263;
 }
+
+.resultBody{
+    padding: 10px 10%;
+    height: 100%;
+}

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import AppHeader from './Header';
+import AppHeader from './AppHeader';
 import StatusBar from './StatusBar';
+import ResultBody from './ResultBody';
+import AppFooter from './AppFooter';
 
 class App extends Component {
   render() {
@@ -9,6 +11,8 @@ class App extends Component {
       <div>
         <AppHeader />
         <StatusBar />
+        <ResultBody/>
+        <AppFooter />
       </div>
     );
   }
