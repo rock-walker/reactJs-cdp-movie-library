@@ -3,7 +3,9 @@ import React, {Component} from 'react';
 class SearchButton extends React.PureComponent {
 	render() {
 		return (
-			<input type="button" value="Search"/>
+            <div>
+			    <input type="button" value="SEARCH" className="searchButton"/>
+            </div>
 		);
 	}
 }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
+import SearchBar from './SearchBar';
+import SearchFilter from './SearchFilter';
 
 class Header extends React.PureComponent {
     render() {
@@ -8,14 +9,16 @@ class Header extends React.PureComponent {
             'header', {className: 'App-header'},
             
                 React.createElement(
-                    'img', {src: logo, className: 'App-logo', alt: 'logo'},
-                        null
+                    'h3', {className: 'App-logo', alt: 'logo'},
+                        'netflixroulette'
                     ),
 
                 React.createElement(
                     'h1', {className: 'App-title'},
-                    'Welcome to movie library'
-                    )
+                    'Find your movie'
+                    ),
+                <SearchBar/>,
+                <SearchFilter/>
         );
     }
 }

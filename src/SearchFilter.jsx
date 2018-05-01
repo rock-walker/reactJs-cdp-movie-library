@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import './Components.css';
+import SearchButton from './SearchButton';
 
 class SearchFilter extends React.Component {
 	render() {
 		return React.createElement(
-					'div', {id: 'searchby'},
-
+					'div', {className: 'searchby'},
+					
 					React.createElement(
-						'span', {id: 'title'}, 'search by'
+						'span', {className: 'title'}, 'search by'
 					),
+					
 					React.createElement(
 						'label', {className: 'sTitle'},
 						React.createElement(
@@ -27,8 +29,9 @@ class SearchFilter extends React.Component {
 						React.createElement(
 								'span', null, 'genre'
 							)
-						)
-					)
+						),
+					<SearchButton/>
+		)
 	}
 }
 

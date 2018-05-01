@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 
 function ResultCount(props) {
 	return (
-		<p> {props.value} movies found </p>
-		);
+		<span> {props.value} movies found </span>
+	);
 }
 
 export default ResultCount;
