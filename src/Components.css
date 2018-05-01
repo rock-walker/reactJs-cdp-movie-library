@@ -93,7 +93,57 @@ body{
     color:#f55263;
 }
 
-.resultBody{
+.resultBody {
     padding: 10px 10%;
-    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
+
+.movieItem {
+    width: 27%;
+    margin: 20px;
+}
+
+.movieItem img {
+    width: 100%;
+}
+
+
+.movieItem .year {
+    float: right;
+    border: solid 1px gray;
+    padding: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.movieItem .title {
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.movieItem p {
+    margin: 5px 0;
+    font-size: 11px;
+    color: gray;
+}
+
+.movieItem .movieDescription {
+    margin-top: 5px;
+    color: #3c3c3c;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
