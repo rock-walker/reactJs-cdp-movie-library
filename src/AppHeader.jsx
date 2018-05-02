@@ -3,6 +3,7 @@ import './App.css';
 import backgroundImg from './header.jpg';
 import SearchBar from './SearchBar';
 import SearchFilter from './SearchFilter';
+import MovieDetails from './MovieDetails';
 
 class Header extends React.PureComponent {
     render() {
@@ -16,12 +17,11 @@ class Header extends React.PureComponent {
                     'h3', {className: 'App-logo', alt: 'logo'},
                         'netflixroulette'
                     ),
+                //view for the second screen
+                //<input type="button" value="SEARCH" className="searchNavigator"/>,
+                //<MovieDetails />
 
-                React.createElement(
-                    'h1', {className: 'App-title'},
-                    'Find your movie'
-                    ),
-
+                //view for the first screen
                 <SearchBar/>,
                 <SearchFilter/>
         );

@@ -20,6 +20,10 @@
   font-size: large;
 }
 
+h2 {
+  color: #f55263;
+}
+
 footer {
   bottom: 0;
   background-color: #3c3c3c;
