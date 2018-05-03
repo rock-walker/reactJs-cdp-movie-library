@@ -3,6 +3,7 @@ body {
   padding: 0;
   font-family: sans-serif;
   height: 100%;
+  font-size: 16px;
 }
 input {
     border-radius: 2px;

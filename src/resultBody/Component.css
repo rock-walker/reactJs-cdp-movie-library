@@ -1,0 +1,5 @@
+.resultBody {
+    padding: 10px 10%;
+    display: flex;
+    flex-wrap: wrap;
+}

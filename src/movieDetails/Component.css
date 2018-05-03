@@ -1,0 +1,44 @@
+.movieDetails {
+    text-transform: none;
+}
+
+.movieDetails img {
+    max-width: 30%;
+    max-height: 300px;
+}
+
+.movieText {
+    display: inline-block;
+    width: 60%;
+    margin-left: 30px;
+    vertical-align: top;
+    font-size: 14px;
+    padding-top: 30px;
+}
+
+.movieText h2 {
+    margin-bottom: 0;
+    display: inline;
+}
+
+.movieText .rate {
+    margin-left: 20px;
+    font-size: 16px;
+    border: solid 1px #b9d1a0;
+    color: #b9d1a0;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.movieText .awards {
+    margin-top: 2px;
+}
+
+.movieText .releaseYear {
+    font-weight: bold;
+}
+
+.movieText .duration {
+    font-weight: bold;
+    margin-left: 40px;
+}

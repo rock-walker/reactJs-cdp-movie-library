@@ -1,20 +1,19 @@
 import React, {Component} from 'react';
-import './App.css';
-import backgroundImg from './header.jpg';
-import SearchBar from './SearchBar';
-import SearchFilter from './SearchFilter';
-import MovieDetails from './MovieDetails';
+import '../app/Component.css';
+import backgroundImg from '../assets/header.jpg';
+import SearchBar from '../searchBar/Component';
+import SearchFilter from '../searchFilter/Component';
+import MovieDetails from '../movieDetails/Component';
 
 class Header extends React.PureComponent {
     render() {
         return React.createElement(
-            'header', {
-                        className: 'App-header',
+            'header', { className: 'App-header',
                         style: {backgroundImage: "url(" + backgroundImg + ")"}
                       },
             
                 React.createElement(
-                    'h3', {className: 'App-logo', alt: 'logo'},
+                    'h3', { className: 'App-logo', alt: 'logo' },
                         'netflixroulette'
                     ),
                 //view for the second screen

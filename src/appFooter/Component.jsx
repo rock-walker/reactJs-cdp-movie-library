@@ -1,4 +1,5 @@
 import React from 'react';
+import '../app/Component.css';
 
 class AppFooter extends React.PureComponent {
     render(){

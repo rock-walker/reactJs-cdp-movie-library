@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import cover from './killbill.jpg';
-import './Components.css';
+import cover from '../assets/killbill.jpg';
+import '../movieDetails/Component.css';
 
 class MovieDetails extends Component {
     render() {

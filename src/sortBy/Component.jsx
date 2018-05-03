@@ -1,4 +1,5 @@
 import React from 'react';
+import '../searchFilter/Component.css';
 
 class SortBy extends React.PureComponent {
 	render() {

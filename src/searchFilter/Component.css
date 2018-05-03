@@ -1,0 +1,36 @@
+.searchby {
+    margin:20px 0;
+    font-weight: bold;
+    padding-bottom: 30px;
+}
+
+.searchby .title {
+    float: left;
+    margin-top: 6px;
+    margin-right: 5px;
+}
+
+.searchby label {
+    float:left;
+    width: auto;
+    background-color:#3c3c3c;
+    border-radius: 2px;
+    margin: 0px 20px;
+}
+
+.searchby label span {
+    text-align:center;
+    padding:4px 20px;
+    border-radius: 2px;
+    display:block;
+}
+
+.searchby label input {
+    position:absolute;
+    top:-20px;
+}
+
+.searchby input:checked + span {
+    background-color:#f55263;
+    color:#F7F7F7;
+}

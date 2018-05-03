@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import './Components.css';
-import ResultCount from './ResultCount';
-import SortBy from './SortBy';
+import '../statusBar/Component.css';
+import ResultCount from '../resultCount/Component';
+import SortBy from '../sortBy/Component';
 
 class StatusBar extends Component {
     render() {

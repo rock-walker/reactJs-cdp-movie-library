@@ -12,7 +12,7 @@ module.exports = {
 
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve(__dirname, 'dist'),
     },
 
     resolve: {
@@ -50,11 +50,11 @@ module.exports = {
     },
 
     plugins: [
-        new CleanWebpackPlugin(['build']),
+        new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: 'Production',
             hash: true,
-            template: './index.html'
+            template: './assets/index.html'
         }),
         new ExtractTextPlugin({
             filename: '[name].css'

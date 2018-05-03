@@ -1,0 +1,34 @@
+.movieItem {
+    width: 27%;
+    margin: 20px;
+}
+
+.movieItem img {
+    width: 100%;
+}
+
+
+.movieItem .year {
+    float: right;
+    border: solid 1px gray;
+    padding: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.movieItem .title {
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.movieItem p {
+    margin: 5px 0;
+    font-size: 11px;
+    color: gray;
+}
+
+.movieItem .movieDescription {
+    margin-top: 5px;
+    color: #3c3c3c;
+}

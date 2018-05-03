@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import './Components.css';
-import MovieItem from './MovieItem';
+import '../resultBody/Component.css';
+import MovieItem from '../movieItem/Component';
 
 class ResultBody extends Component {
     render() {
