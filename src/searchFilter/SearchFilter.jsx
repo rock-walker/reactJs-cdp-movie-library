@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import '../searchFilter/Component.css';
-import SearchButton from '../searchButton/Component';
+import '../searchFilter/searchFilter.css';
+import SearchButton from '../searchButton/SearchButton';
 
 class SearchFilter extends React.Component {
     render() {

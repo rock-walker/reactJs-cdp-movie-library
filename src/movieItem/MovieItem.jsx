@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import cover from '../assets/killbill.jpg';
-import '../movieItem/Component.css';
+import '../movieItem/movieItem.css';
 
 class MovieItem extends Component {
     render() {

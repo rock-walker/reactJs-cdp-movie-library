@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../searchButton/Component.css';
+import '../searchButton/searchButton.css';
 
 class SearchButton extends React.PureComponent {
 	render() {

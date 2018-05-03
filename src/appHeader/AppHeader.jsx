@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import '../app/Component.css';
+import '../app/app.css';
 import backgroundImg from '../assets/header.jpg';
-import SearchBar from '../searchBar/Component';
-import SearchFilter from '../searchFilter/Component';
-import MovieDetails from '../movieDetails/Component';
+import SearchBar from '../searchBar/SearchBar';
+import SearchFilter from '../searchFilter/SearchFilter';
+import MovieDetails from '../movieDetails/MovieDetails';
 
 class Header extends React.PureComponent {
     render() {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import '../app/Component.css';
-import AppHeader from '../appHeader/Component';
-import StatusBar from '../statusBar/Component';
-import ResultBody from '../resultBody/Component';
-import AppFooter from '../appFooter/Component';
+import '../app/app.css';
+import AppHeader from '../appHeader/AppHeader';
+import StatusBar from '../statusBar/StatusBar';
+import ResultBody from '../resultBody/ResultBody';
+import AppFooter from '../appFooter/AppFooter';
 import ErrorBoundary from '../common/ErrorBoundary';
 
 class App extends Component {
