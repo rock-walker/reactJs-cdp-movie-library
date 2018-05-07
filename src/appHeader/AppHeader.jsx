@@ -5,8 +5,16 @@ import SearchBar from '../searchBar/SearchBar';
 import SearchFilter from '../searchFilter/SearchFilter';
 import MovieDetails from '../movieDetails/MovieDetails';
 
-class Header extends React.PureComponent {
+class AppHeader extends React.PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isList: true
+        }
+    }
+
     render() {
+        const isList = this.state.isList;
         return React.createElement(
             'header', { className: 'App-header',
                         style: {backgroundImage: "url(" + backgroundImg + ")"}
@@ -16,16 +24,17 @@ class Header extends React.PureComponent {
                     'h3', { className: 'App-logo', alt: 'logo' },
                         'netflixroulette'
                     ),
-                //view for the second screen
-                //<input type="button" value="SEARCH" className="searchNavigator"/>,
-                //<MovieDetails />
 
-                //view for the first screen
-                <SearchBar/>,
-                <SearchFilter/>
+                 isList ? ([
+                    <SearchBar/>,
+                    <SearchFilter/>
+                    ]) : ([
+                    <input type="button" value="SEARCH" className="searchNavigator"/>,
+                    <MovieDetails />
+                 ])
         );
     }
 }
 
 
-export default Header;
+export default AppHeader;

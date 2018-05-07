@@ -3,6 +3,10 @@ import cover from '../assets/killbill.jpg';
 import '../movieDetails/movieDetails.css';
 
 class MovieDetails extends Component {
+    constructor(props){
+        super(props);
+    }
+    
     render() {
         return (
             <div className="movieDetails">

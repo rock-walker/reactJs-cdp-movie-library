@@ -4,14 +4,31 @@ import cover from '../assets/killbill.jpg';
 import '../movieItem/movieItem.css';
 
 class MovieItem extends Component {
+    constructor(props) {
+        super(props);
+        this.navToDetails = this.navToDetails.bind(this);
+    }
+
+    navToDetails(event) {
+        
+    }
+
+    concatenateGenres(genres){
+        if (genres.length == 1) {
+            return genres;
+        }
+
+        return genres.join(' & ');
+    }
+
     render() {
         return(
-            <div className="movieItem">
+            <div className="movieItem" onClick={this.navToDetails}>
                 <img src={cover}/>
                 <div className="movieDescription">
-                    <span className="title">KILL BILL: VOL.1</span>
-                    <div className="year">2004</div>
-                    <p>Actions</p>
+                    <span className="title">{this.props.title}</span>
+                    <div className="year">{this.props.date}</div>
+                    <p>{this.concatenateGenres(this.props.genres)}</p>
                 </div>
             </div>
         );
