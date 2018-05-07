@@ -4,11 +4,20 @@ import ResultCount from '../resultCount/ResultCount';
 import SortBy from '../sortBy/SortBy';
 
 class StatusBar extends Component {
+    constructor(props){
+        super(props);
+        this.handleSorting = this.handleSorting.bind(this);
+    }
+
+    handleSorting(sortByDate) {
+        this.props.OnSortingChange(sortByDate);
+    }
+
     render() {
         return (
             <div className="statusBar">
-                <ResultCount value="7" />
-                <SortBy />
+                <ResultCount value={this.props.moviesCount} />
+                <SortBy OnSortingChange={this.handleSorting} />
             </div>
         )
     }

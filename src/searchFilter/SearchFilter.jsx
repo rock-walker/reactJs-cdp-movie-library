@@ -9,15 +9,13 @@ class SearchFilter extends React.Component {
             searchByTitle: true
         };
 
-        this.toggleSortHandler = this.toggleSortHandler.bind(this);
+        this.toggleSearchFilter = this.toggleSearchFilter.bind(this);
     }
 
-    toggleSortHandler(event) {
+    toggleSearchFilter(event) {
         this.setState(prevState => ({
             searchByTitle: !prevState.searchByTitle
         }));
-
-        alert(this.state.searchByTitle);
     }
 
     render() {
@@ -31,7 +29,7 @@ class SearchFilter extends React.Component {
                 React.createElement(
                     'label', {className: 'sTitle'},
                     React.createElement(
-                        'input', {type: 'radio', name: 'toggle', onClick: this.toggleSortHandler },
+                        'input', {type: 'radio', name: 'toggle', onClick: this.toggleSearchFilter },
                     ),
                     React.createElement(
                         'span', null, 'title'
@@ -41,7 +39,7 @@ class SearchFilter extends React.Component {
                 React.createElement(
                     'label', {className: 'sGenre'},
                     React.createElement(
-                        'input', {type: 'radio', name: 'toggle', onClick: this.toggleSortHandler },
+                        'input', {type: 'radio', name: 'toggle', onClick: this.toggleSearchFilter },
                     ),
                     React.createElement(
                         'span', null, 'genre'
