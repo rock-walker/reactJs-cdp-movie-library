@@ -26,8 +26,8 @@ class AppHeader extends React.PureComponent {
                     ),
 
                  isList ? ([
-                    <SearchBar/>,
-                    <SearchFilter/>
+                    <SearchBar key="searchBar"/>,
+                    <SearchFilter key="searchFilter"/>
                     ]) : ([
                     <input type="button" value="SEARCH" className="searchNavigator"/>,
                     <MovieDetails />

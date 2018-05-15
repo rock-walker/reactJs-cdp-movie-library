@@ -18,7 +18,10 @@ class SearchBar extends Component {
 		return (
             <div>
                 <h1 className="App-title">Find your movie</h1>
-                <input type="text" value={this.state.searchText} onChange={this.handleSearchText} className="searchBar"/>
+                <input type="text" 
+                    value={this.state.searchText} 
+                    onChange={this.handleSearchText} 
+                    className="searchBar"/>
             </div>
         );
     }

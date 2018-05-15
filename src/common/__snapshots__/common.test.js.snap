@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Error boundary catch error 1`] = `
+<h1>
+  Something went wrong.
+</h1>
+`;
+
+exports[`Error boundary display component correctly 1`] = `
+<div>
+  <h1
+    className="App-title"
+  >
+    Find your movie
+  </h1>
+  <input
+    className="searchBar"
+    onChange={[Function]}
+    type="text"
+    value=""
+  />
+</div>
+`;

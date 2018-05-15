@@ -11,7 +11,7 @@ class ResultBody extends Component {
             <div className="resultBody">
                {
                 this.props.movies.map((item) =>
-                    <MovieItem title={item.title} 
+                    <MovieItem title={item.title} key={item.title}
                         date={item.release_date}
                         genres={item.genres}
                         item={item} />
