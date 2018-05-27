@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-
-import cover from '../assets/killbill.jpg';
 import '../movieItem/movieItem.css';
 
 class MovieItem extends Component {
@@ -24,10 +22,10 @@ class MovieItem extends Component {
     render() {
         return(
             <div className="movieItem" onClick={this.navToDetails}>
-                <img src={cover}/>
+                <img src={this.props.cover}/>
                 <div className="movieDescription">
                     <span className="title">{this.props.title}</span>
-                    <div className="year">{this.props.date}</div>
+                    <div className="year">{new Date(this.props.date).getFullYear()}</div>
                     <p>{this.concatenateGenres(this.props.genres)}</p>
                 </div>
             </div>
