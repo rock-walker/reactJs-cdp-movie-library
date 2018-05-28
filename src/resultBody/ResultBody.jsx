@@ -3,7 +3,7 @@ import '../resultBody/resultBody.css';
 import MovieItem from '../movieItem/MovieItem';
 
 class ResultBody extends Component {
-    constructor(props){
+    constructor(props, actions){
         super(props);
     }
 
@@ -15,11 +15,7 @@ class ResultBody extends Component {
                 : <div className="resultBody">
                     {
                         movies.map((item) =>
-                            <MovieItem title={item.title} key={item.title}
-                                    date={item.release_date}
-                                    genres={item.genres}
-                                    cover={item.poster_path}
-                                    item={item} />
+                            <MovieItem key={item.title} item={item}/>
                         )
                     }
                 </div>

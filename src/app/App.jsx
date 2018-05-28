@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import '../app/app.css'
 import { connect } from 'react-redux'
-import { selectedMovies, fetchPostsIfNeeded, invalidateMovies } from '../actions'
+import { selectedMovies, 
+         fetchPostsIfNeeded, 
+         invalidateMovies,
+       } from '../actions'
+
 import AppHeader from '../appHeader/AppHeader'
 import StatusBar from '../statusBar/StatusBar'
 import ResultBody from '../resultBody/ResultBody'
@@ -15,7 +19,7 @@ class App extends Component {
         this.state = {
             sortByDate: true,
             filterByGenre: true
-        }      
+        }
     }
 
     componentDidMount() {

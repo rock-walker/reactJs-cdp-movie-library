@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 import {
     SELECT_MOVIES, INVALIDATE_MOVIES,
-    REQUEST_POSTS, RECEIVE_POSTS
+    REQUEST_POSTS, RECEIVE_POSTS,
+    REQUEST_MOVIE, GET_MOVIE_DETAILS
 } from '../actions'
 
 const selectedMovies = (state = 'tarantino', action) => {
@@ -25,18 +26,33 @@ const posts = (state = {
                 didInvalidate: true
             }
         case REQUEST_POSTS:
+        case REQUEST_MOVIE:
             return {
                 ...state,
                 isFetching: true,
                 didInvalidate: false
             }
         case RECEIVE_POSTS:
+        case GET_MOVIE_DETAILS:
             return {
                 ...state,
                 isFetching: false,
                 didInvalidate: false,
                 items: action.posts,
                 lastUpdated: action.receivedAt
+            }
+        default:
+            return state
+    }
+}
+
+const movieDetails = (state = { }, action) => {
+    switch (action.type){
+        case REQUEST_MOVIE:
+        case GET_MOVIE_DETAILS:
+            return {
+                ...state,
+                [action.movie]: posts(state[action.movie], action)
             }
         default:
             return state
@@ -59,7 +75,8 @@ const postsBySearch = (state = { }, action) => {
 
 const rootReducer = combineReducers({
     postsBySearch,
-    selectedMovies
+    selectedMovies,
+    movieDetails
 })
 
 export default rootReducer
