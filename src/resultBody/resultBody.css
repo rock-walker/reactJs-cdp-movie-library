@@ -3,3 +3,7 @@
     display: flex;
     flex-wrap: wrap;
 }
+.emptyResults {
+    margin: 20%;
+    text-align: center;
+}

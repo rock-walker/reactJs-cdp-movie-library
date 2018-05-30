@@ -9,3 +9,6 @@ input {
     border-radius: 2px;
     border: none;
 }
+input[type="button"] {
+    cursor: pointer;
+}

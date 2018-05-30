@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import '../movieItem/movieItem.css';
-import { connect } from 'react-redux';
-import { fetchMovieDetails } from '../actions'
 
 class MovieItem extends Component {
     constructor(props) {
@@ -17,17 +15,11 @@ class MovieItem extends Component {
         return genres.join(' & ')
     }
 
-    navToDetails(id){
-        const { dispatch } = this.props
-        let movie = dispatch(fetchMovieDetails(id))
-        movie = null;
-    }
-
     render() {
-        const { item, navToDetails } = this.props;
+        const { item, onClick } = this.props;
 
         return(
-            <div className="movieItem" onClick={() => this.navToDetails(item.id)}>
+            <div className="movieItem" onClick={ onClick } >
                 <img src={item.poster_path}/>
                 <div className="movieDescription">
                     <span className="title">{item.title}</span>

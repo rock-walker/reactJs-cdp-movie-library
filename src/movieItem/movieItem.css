@@ -1,6 +1,7 @@
 .movieItem {
     width: 27%;
     margin: 20px;
+    cursor: pointer;
 }
 
 .movieItem img {

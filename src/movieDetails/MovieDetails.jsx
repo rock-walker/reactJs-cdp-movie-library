@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import cover from '../assets/killbill.jpg';
 import '../movieDetails/movieDetails.css';
 
 class MovieDetails extends Component {
@@ -8,25 +7,19 @@ class MovieDetails extends Component {
     }
     
     render() {
+        const { movie } = this.props
         return (
             <div className="movieDetails">
-                <img src={cover}/>
+                <img src={movie.poster_path}/>
                 <div className="movieText">
-                    <h2>Pulp Fiction</h2>
-                    <span className="rate">4.1</span>
-                    <p className="awards">Oscar-winning Movies</p>
+                    <h2>{movie.title}</h2>
+                    <span className="rate">{movie.vote_average}</span>
+                    <p className="awards">{movie.genres.join(' & ')}</p>
                     <p>
-                        <span className="releaseYear">1994</span>
-                        <span className="duration">154 min</span>
+                        <span className="releaseYear">{new Date(movie.release_date).getFullYear()}</span>
+                        <span className="duration">{movie.runtime} min</span>
                     </p>
-                    <p>
-                         is a 1994 American crime film written and directed by Quentin Tarantino, 
-                         based on a story by Tarantino and Roger Avary,[4] and starring John Travolta, 
-                         Samuel L. Jackson, Bruce Willis, Ving Rhames, and Uma Thurman. 
-                         The film tells a few stories of criminal Los Angeles. 
-                         The films title refers to the pulp magazines and hardboiled crime novels popular 
-                         during the mid-20th century, known for their graphic violence and punchy dialogue.
-                    </p>
+                    <p>{movie.overview}</p>
                 </div>
             </div>
         );

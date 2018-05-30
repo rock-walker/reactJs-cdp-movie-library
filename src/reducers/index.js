@@ -2,10 +2,11 @@ import { combineReducers } from 'redux';
 import {
     SELECT_MOVIES, INVALIDATE_MOVIES,
     REQUEST_POSTS, RECEIVE_POSTS,
-    REQUEST_MOVIE, GET_MOVIE_DETAILS
+    REQUEST_MOVIE, GET_MOVIE_DETAILS,
+    SWITCH_HEADER_VIEW
 } from '../actions'
 
-const selectedMovies = (state = 'tarantino', action) => {
+const selectedMovies = (state = 'title', action) => {
     switch (action.type) {
         case SELECT_MOVIES:
             return action.movies
@@ -14,7 +15,7 @@ const selectedMovies = (state = 'tarantino', action) => {
     }
 }
 
-const posts = (state = {
+const movies = (state = {
         isFetching: false,
         didInvalidate: false,
         items: []
@@ -26,19 +27,17 @@ const posts = (state = {
                 didInvalidate: true
             }
         case REQUEST_POSTS:
-        case REQUEST_MOVIE:
             return {
                 ...state,
                 isFetching: true,
                 didInvalidate: false
             }
         case RECEIVE_POSTS:
-        case GET_MOVIE_DETAILS:
             return {
                 ...state,
                 isFetching: false,
                 didInvalidate: false,
-                items: action.posts,
+                items: action.movies,
                 lastUpdated: action.receivedAt
             }
         default:
@@ -49,24 +48,38 @@ const posts = (state = {
 const movieDetails = (state = { }, action) => {
     switch (action.type){
         case REQUEST_MOVIE:
+            return {
+                ...state,
+                isFetching: true,
+                didInvalidate: false
+            }
         case GET_MOVIE_DETAILS:
             return {
                 ...state,
-                [action.movie]: posts(state[action.movie], action)
+                isFetching: false,
+                didInvalidate: false,
+                item: action.movie,
+                lastUpdated: action.receivedAt,
+                isDetailsView: true,
+            }
+        case SWITCH_HEADER_VIEW:
+            return {
+                ...state,
+                isDetailsView: action.isDetails
             }
         default:
             return state
     }
 }
 
-const postsBySearch = (state = { }, action) => {
+const moviesBySearch = (state = { }, action) => {
     switch (action.type) {
         case INVALIDATE_MOVIES:
         case RECEIVE_POSTS:
         case REQUEST_POSTS:
             return {
                 ...state,
-                [action.movies]: posts(state[action.movies], action)
+                [action.searchBy]: movies(state[action.searchBy], action)
             }
         default:
             return state
@@ -74,7 +87,7 @@ const postsBySearch = (state = { }, action) => {
 }
 
 const rootReducer = combineReducers({
-    postsBySearch,
+    moviesBySearch,
     selectedMovies,
     movieDetails
 })

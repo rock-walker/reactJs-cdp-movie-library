@@ -4,26 +4,27 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const SELECT_MOVIES = 'SELECT_MOVIES'
 export const INVALIDATE_MOVIES = 'INVALIDATE_MOVIES'
 export const GET_MOVIE_DETAILS = 'GET_MOVIE_DETAILS'
+export const SWITCH_HEADER_VIEW = 'SWITCH_HEADER_VIEW'
 
-export const selectMovies = movies => ({
+export const selectMovies = searchBy => ({
     type: SELECT_MOVIES,
-    movies
+    searchBy
 })
 
-export const invalidateMovies = movies => ({
-  type: INVALIDATE_MOVIES,
-  movies
+export const invalidateMovies = searchBy => ({
+    type: INVALIDATE_MOVIES,
+    searchBy
 })
 
-export const requestPosts = movies => ({
+export const requestPosts = searchBy => ({
     type: REQUEST_POSTS,
-    movies
+    searchBy
 })
 
-export const receivePosts = (movies, json) => ({
+export const receivePosts = (searchBy, json) => ({
     type: RECEIVE_POSTS,
-    movies,
-    posts: json.data,
+    searchBy,
+    movies: json.data,
     receivedAt: Date.now()
 })
 
@@ -32,11 +33,18 @@ export const requestMovie = id => ({
     id
 })
 
-export const receiveMovieDetails = (movie, json) => ({
+export const receiveMovieDetails = (id, json) => ({
     type: GET_MOVIE_DETAILS,
-    movie,
-    movie: json.data
+    id,
+    movie: json
 })
+
+export const switchHeaderView = (isDetails) => ({
+    type: SWITCH_HEADER_VIEW,
+    isDetails
+})
+
+const baseUri = 'http://react-cdp-api.herokuapp.com/movies';
 
 export const fetchMovieDetails = id => dispatch => {
     dispatch(requestMovie(id))
@@ -45,15 +53,16 @@ export const fetchMovieDetails = id => dispatch => {
         .then(json => dispatch(receiveMovieDetails(id, json)))
 }
 
-const fetchPosts = movies => dispatch => {
-    dispatch(requestPosts(movies))
-    return fetch(`http://react-cdp-api.herokuapp.com/movies?searchBy=${movies}`)
+const fetchPosts = (movieGenre, search) => dispatch => {
+    dispatch(requestPosts(movieGenre))
+    let url = baseUri + '?searchBy=' + movieGenre + (search ? ('&search=' + search) : '');
+    return fetch(url)
         .then(response => response.json())
-        .then(json => dispatch(receivePosts(movies, json)))
+        .then(json => dispatch(receivePosts(movieGenre, json)))
 }
 
 const shouldFetchPosts = (state, movies) => {
-    const posts = state.postsBySearch[movies]
+    const posts = state.moviesBySearch[movies]
     if (!posts) {
         return true
     }

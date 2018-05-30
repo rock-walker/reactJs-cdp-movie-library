@@ -3,36 +3,28 @@ import '../resultBody/resultBody.css';
 import MovieItem from '../movieItem/MovieItem';
 
 class ResultBody extends Component {
-    constructor(props, actions){
+    constructor(props){
         super(props);
     }
 
     render() {
-        const {lastUpdated, isFetching, isEmpty, movies} = this.props;
-        return(<div>
-            {isEmpty
-                ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
-                : <div className="resultBody">
-                    {
-                        movies.map((item) =>
-                            <MovieItem key={item.title} item={item}/>
-                        )
-                    }
-                </div>
-            }
-            <p>
-                    {lastUpdated &&
-                        <span>
-                            Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
-                            {' '}
-                        </span>
-                    }
-                    {!isFetching &&
-                        <button onClick={this.handleRefreshClick}>
-                            Refresh
-                        </button>
-                    }
-            </p></div>
+        const {lastUpdated, isFetching, isEmpty, movies, onMovieClick} = this.props;
+        return(
+            <div>
+                {
+                    isEmpty
+                        ? (isFetching 
+                            ? <h2>Loading...</h2> 
+                            : <div className="emptyResults"><h1>No films found.</h1></div>)
+                        :   <div className="resultBody">
+                            {
+                                movies.map((item) =>
+                                    <MovieItem key={item.title} item={item} onClick={() => onMovieClick(item.id)}/>
+                                )
+                            }
+                            </div>
+                }
+            </div>
         );
     }
 }

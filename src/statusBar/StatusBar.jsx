@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import '../statusBar/statusBar.css';
-import ResultCount from '../resultCount/ResultCount';
-import SortBy from '../sortBy/SortBy';
+import React, {Component} from 'react'
+import '../statusBar/statusBar.css'
+import ResultCount from '../resultCount/ResultCount'
+import SortBy from '../sortBy/SortBy'
 
 class StatusBar extends Component {
     constructor(props){
@@ -14,10 +14,19 @@ class StatusBar extends Component {
     }
 
     render() {
+        const { isDetailsView, genre } = this.props
         return (
             <div className="statusBar">
-                <ResultCount value={this.props.moviesCount} />
-                <SortBy OnSortingChange={this.handleSorting} />
+            {
+                !isDetailsView 
+                    ? (
+                        <div>
+                            <ResultCount value={this.props.moviesCount} />
+                            <SortBy OnSortingChange={this.handleSorting} />
+                        </div>
+                    )
+                    : <span>Films by {genre} genre</span>
+            }
             </div>
         )
     }

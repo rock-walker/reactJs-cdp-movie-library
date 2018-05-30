@@ -6,15 +6,12 @@ import SearchFilter from '../searchFilter/SearchFilter';
 import MovieDetails from '../movieDetails/MovieDetails';
 
 class AppHeader extends React.PureComponent {
-    constructor(props) {
+     constructor(props){
         super(props);
-        this.state = {
-            isList: true
-        }
     }
 
     render() {
-        const isList = this.state.isList;
+        const { isDetailsView, movie, onSearchClick } = this.props;
         return React.createElement(
             'header', { className: 'App-header',
                         style: {backgroundImage: "url(" + backgroundImg + ")"}
@@ -25,12 +22,12 @@ class AppHeader extends React.PureComponent {
                         'netflixroulette'
                     ),
 
-                 isList ? ([
+                 !isDetailsView ? ([
                     <SearchBar key="searchBar"/>,
                     <SearchFilter key="searchFilter"/>
                     ]) : ([
-                    <input type="button" value="SEARCH" className="searchNavigator"/>,
-                    <MovieDetails />
+                    <input type="button" value="SEARCH" className="searchNavigator" onClick={() => onSearchClick(false)}/>,
+                    <MovieDetails movie={ movie }/>
                  ])
         );
     }
