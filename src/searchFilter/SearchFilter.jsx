@@ -12,13 +12,17 @@ class SearchFilter extends React.Component {
         this.toggleSearchFilter = this.toggleSearchFilter.bind(this);
     }
 
-    toggleSearchFilter(event) {
+    toggleSearchFilter(saveToStore) {
         this.setState(prevState => ({
             searchByTitle: !prevState.searchByTitle
-        }));
+        }))
+
+        let filter = this.state.searchByTitle ? 'title' : 'genres'
+        saveToStore(filter)
     }
 
     render() {
+        const { onFilterClick } = this.props
         return React.createElement(
             'div', {className: 'searchby'},
 
@@ -29,7 +33,7 @@ class SearchFilter extends React.Component {
                 React.createElement(
                     'label', {className: 'sTitle'},
                     React.createElement(
-                        'input', {type: 'radio', name: 'toggle', onClick: this.toggleSearchFilter },
+                        'input', {type: 'radio', name: 'toggle', onClick: () => this.toggleSearchFilter(onFilterClick)} ,
                     ),
                     React.createElement(
                         'span', null, 'title'
@@ -39,10 +43,10 @@ class SearchFilter extends React.Component {
                 React.createElement(
                     'label', {className: 'sGenre'},
                     React.createElement(
-                        'input', {type: 'radio', name: 'toggle', onClick: this.toggleSearchFilter },
+                        'input', {type: 'radio', name: 'toggle', onClick: () => this.toggleSearchFilter(onFilterClick)} ,
                     ),
                     React.createElement(
-                        'span', null, 'genre'
+                        'span', null, 'genres'
                     )
                 ),
 

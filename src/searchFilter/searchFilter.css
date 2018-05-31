@@ -16,6 +16,7 @@
     background-color:#3c3c3c;
     border-radius: 2px;
     margin: 0px 20px;
+    cursor: pointer;
 }
 
 .searchby label span {

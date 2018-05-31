@@ -3,8 +3,7 @@ import { fetchPosts } from '../actions'
 import StatusBar from '../statusBar/StatusBar'
 
 const getFirstGenre = item => {
-    return (item) ? item.genres[0]
-                : ''
+    return (item) ? item.genres[0] : ''
 }
 
 const mapStateToProps = state => {

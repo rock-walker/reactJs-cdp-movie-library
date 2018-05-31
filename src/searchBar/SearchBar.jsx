@@ -4,23 +4,15 @@ import '../searchBar/searchBar.css';
 class SearchBar extends Component {
     constructor(props){
         super(props);
-        this.state = {searchText: ''};
-        this.handleSearchText = this.handleSearchText.bind(this);
-    }
-
-    handleSearchText (event) {
-        this.setState({
-            searchText: event.target.value
-        });
     }
 
 	render() {
+        const { onSearchChange } = this.props
 		return (
             <div>
                 <h1 className="App-title">Find your movie</h1>
                 <input type="text" 
-                    value={this.state.searchText} 
-                    onChange={this.handleSearchText} 
+                    onChange={(event) => onSearchChange(event.target.value)} 
                     className="searchBar"/>
             </div>
         );

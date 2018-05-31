@@ -2,14 +2,17 @@ import { combineReducers } from 'redux';
 import {
     SELECT_MOVIES, INVALIDATE_MOVIES,
     REQUEST_POSTS, RECEIVE_POSTS,
+
     REQUEST_MOVIE, GET_MOVIE_DETAILS,
-    SWITCH_HEADER_VIEW
+    SWITCH_HEADER_VIEW,
+
+    SET_FILTER, SET_SEARCH_TEXT
 } from '../actions'
 
 const selectedMovies = (state = 'title', action) => {
     switch (action.type) {
         case SELECT_MOVIES:
-            return action.movieGenre + ':' + (action.search || '');
+            return (action.movieGenre || state) + ':' + (action.search || '');
         default:
             return state
     }
@@ -86,10 +89,31 @@ const moviesBySearch = (state = { }, action) => {
     }
 }
 
+const searchOptions = (state = {
+        filter: 'title',
+        searchText: ''
+    }, action) => {
+    switch (action.type) {
+        case SET_FILTER:
+            return {
+                ...state,
+                filter: action.filter
+            }
+        case SET_SEARCH_TEXT:
+            return {
+                ...state,
+                searchText: action.text
+            }
+        default:
+            return state
+    }
+}
+
 const rootReducer = combineReducers({
     moviesBySearch,
     selectedMovies,
-    movieDetails
+    movieDetails,
+    searchOptions
 })
 
 export default rootReducer

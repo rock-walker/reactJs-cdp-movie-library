@@ -23,8 +23,8 @@ class App extends Component {
     }
 
     componentDidMount() {
-        const { dispatch, selectedMovies } = this.props
-        dispatch(fetchPostsIfNeeded(selectedMovies))
+        const { dispatch } = this.props
+        dispatch(fetchPostsIfNeeded())
     }
 
     sortMovies(sortByDate) {

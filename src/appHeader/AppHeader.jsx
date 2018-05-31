@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import '../app/app.css';
-import backgroundImg from '../assets/header.jpg';
-import SearchBar from '../searchBar/SearchBar';
-import SearchFilter from '../searchFilter/SearchFilter';
-import MovieDetails from '../movieDetails/MovieDetails';
+import React, {Component} from 'react'
+import '../app/app.css'
+import backgroundImg from '../assets/header.jpg'
+import VisibleSearchBar from '../containers/VisibleSearchBar'
+import VisibleSearchFilter from '../containers/VisibleSearchFilter'
+import MovieDetails from '../movieDetails/MovieDetails'
 
 class AppHeader extends React.PureComponent {
      constructor(props){
@@ -23,8 +23,8 @@ class AppHeader extends React.PureComponent {
                     ),
 
                  !isDetailsView ? ([
-                    <SearchBar key="searchBar"/>,
-                    <SearchFilter key="searchFilter"/>
+                    <VisibleSearchBar key="searchBar"/>,
+                    <VisibleSearchFilter key="searchFilter"/>
                     ]) : ([
                     <input type="button" value="SEARCH" className="searchNavigator" onClick={() => onSearchClick(false)}/>,
                     <MovieDetails movie={ movie }/>
@@ -34,4 +34,4 @@ class AppHeader extends React.PureComponent {
 }
 
 
-export default AppHeader;
+export default AppHeader
