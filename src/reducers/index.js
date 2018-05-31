@@ -9,7 +9,7 @@ import {
 const selectedMovies = (state = 'title', action) => {
     switch (action.type) {
         case SELECT_MOVIES:
-            return action.movies
+            return action.movieGenre + ':' + (action.search || '');
         default:
             return state
     }

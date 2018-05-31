@@ -6,9 +6,10 @@ export const INVALIDATE_MOVIES = 'INVALIDATE_MOVIES'
 export const GET_MOVIE_DETAILS = 'GET_MOVIE_DETAILS'
 export const SWITCH_HEADER_VIEW = 'SWITCH_HEADER_VIEW'
 
-export const selectMovies = searchBy => ({
+export const selectMovies = (movieGenre, search) => ({
     type: SELECT_MOVIES,
-    searchBy
+    movieGenre,
+    search
 })
 
 export const invalidateMovies = searchBy => ({
@@ -48,9 +49,11 @@ const baseUri = 'http://react-cdp-api.herokuapp.com/movies';
 
 export const fetchMovieDetails = id => dispatch => {
     dispatch(requestMovie(id))
-    return fetch(`http://react-cdp-api.herokuapp.com/movies/${id}`)
+    let url = baseUri + '/' + id
+    return fetch(url)
         .then(response => response.json())
         .then(json => dispatch(receiveMovieDetails(id, json)))
+        .then(state => dispatch(fetchPostsIfNeeded('genres', state.movie.genres[0])))
 }
 
 const fetchPosts = (movieGenre, search) => dispatch => {
@@ -61,8 +64,8 @@ const fetchPosts = (movieGenre, search) => dispatch => {
         .then(json => dispatch(receivePosts(movieGenre, json)))
 }
 
-const shouldFetchPosts = (state, movies) => {
-    const posts = state.moviesBySearch[movies]
+const shouldFetchPosts = (state, key) => {
+    const posts = state.moviesBySearch[key]
     if (!posts) {
         return true
     }
@@ -73,8 +76,9 @@ const shouldFetchPosts = (state, movies) => {
 }
 
 
-export const fetchPostsIfNeeded = movies => (dispatch, getState) => {
-    if (shouldFetchPosts(getState(), movies)) {
-        return dispatch(fetchPosts(movies))
+export const fetchPostsIfNeeded = (movieGenre, search) => (dispatch, getState) => {
+    let key = dispatch(selectMovies(movieGenre, search));
+    if (shouldFetchPosts(getState(), key)) {
+        return dispatch(fetchPosts(movieGenre, search))
     }
 }

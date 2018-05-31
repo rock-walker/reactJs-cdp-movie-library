@@ -8,7 +8,7 @@ class ResultBody extends Component {
     }
 
     render() {
-        const {lastUpdated, isFetching, isEmpty, movies, onMovieClick} = this.props;
+        const {isFetching, isEmpty, movies, onMovieClick} = this.props;
         return(
             <div>
                 {
