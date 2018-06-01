@@ -3,7 +3,7 @@ import { fetchMovieDetails } from '../actions'
 import ResultBody from '../resultBody/ResultBody'
 
 const mapStateToProps = (state, ownProps) => {
-    let foundMovies = state.moviesBySearch[state.selectedMovies]
+    let foundMovies = state.moviesBySearch[state.moviesCacheKeys]
     return {
         movies: foundMovies ? foundMovies.items : []
     }

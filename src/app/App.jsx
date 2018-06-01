@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../app/app.css'
 import { connect } from 'react-redux'
-import { selectedMovies, 
+import { moviesCacheKeys, 
          fetchPostsIfNeeded, 
          invalidateMovies,
        } from '../actions'
@@ -39,7 +39,7 @@ class App extends Component {
     }
 
     render() {
-        const { selectedMovies, movies, isFetching, lastUpdated } = this.props;
+        const { moviesCacheKeys, movies, isFetching, lastUpdated } = this.props;
         const moviesCount = movies.length;
         const isEmpty = movies.length === 0;
         return (
@@ -60,18 +60,18 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-    const { selectedMovies, moviesBySearch } = state
+    const { moviesCacheKeys, moviesBySearch } = state
     const {
         isFetching,
         lastUpdated,
         items: movies
-    } = moviesBySearch[selectedMovies] || {
+    } = moviesBySearch[moviesCacheKeys] || {
         isFetching: true,
         items: []
     }
 
     return {
-        selectedMovies,
+        moviesCacheKeys,
         movies,
         isFetching,
         lastUpdated

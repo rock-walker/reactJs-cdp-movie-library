@@ -1,15 +1,15 @@
 export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const REQUEST_MOVIE = 'REQUEST_MOVIE'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-export const SELECT_MOVIES = 'SELECT_MOVIES'
+export const BUILD_MOVIES_CACHE_KEY = 'BUILD_MOVIES_CACHE_KEY'
 export const INVALIDATE_MOVIES = 'INVALIDATE_MOVIES'
 export const GET_MOVIE_DETAILS = 'GET_MOVIE_DETAILS'
 export const SWITCH_HEADER_VIEW = 'SWITCH_HEADER_VIEW'
 export const SET_FILTER = 'SET_FILTER'
 export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT'
 
-export const selectMovies = (movieGenre, search) => ({
-    type: SELECT_MOVIES,
+export const buildMoviesCacheKey = (movieGenre, search) => ({
+    type: BUILD_MOVIES_CACHE_KEY,
     movieGenre,
     search
 })
@@ -89,9 +89,14 @@ const shouldFetchPosts = (state, key) => {
 
 
 export const fetchPostsIfNeeded = (movieGenre, search) => (dispatch, getState) => {
-    dispatch(selectMovies(movieGenre, search));
-    let key = getState().selectedMovies;
+    let options = getState().searchOptions
+    let filter = movieGenre || options.filter
+    let query = search || options.searchText
+
+    dispatch(buildMoviesCacheKey(filter, query));
+
+    let key = getState().moviesCacheKeys;
     if (shouldFetchPosts(getState(), key)) {
-        return dispatch(fetchPosts(key, movieGenre, search))
+        return dispatch(fetchPosts(key, filter, query))
     }
 }

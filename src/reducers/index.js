@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import {
-    SELECT_MOVIES, INVALIDATE_MOVIES,
+    BUILD_MOVIES_CACHE_KEY, INVALIDATE_MOVIES,
     REQUEST_POSTS, RECEIVE_POSTS,
 
     REQUEST_MOVIE, GET_MOVIE_DETAILS,
@@ -9,9 +9,9 @@ import {
     SET_FILTER, SET_SEARCH_TEXT
 } from '../actions'
 
-const selectedMovies = (state = 'title', action) => {
+const moviesCacheKeys = (state = 'title', action) => {
     switch (action.type) {
-        case SELECT_MOVIES:
+        case BUILD_MOVIES_CACHE_KEY:
             return (action.movieGenre || state) + ':' + (action.search || '');
         default:
             return state
@@ -111,7 +111,7 @@ const searchOptions = (state = {
 
 const rootReducer = combineReducers({
     moviesBySearch,
-    selectedMovies,
+    moviesCacheKeys,
     movieDetails,
     searchOptions
 })
