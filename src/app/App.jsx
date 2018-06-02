@@ -15,27 +15,11 @@ import ErrorBoundary from '../common/ErrorBoundary'
 class App extends Component {
     constructor(props) {
         super(props);
-        this.sortMovies = this.sortMovies.bind(this);
-        this.state = {
-            sortByDate: true,
-            filterByGenre: true
-        }
     }
 
     componentDidMount() {
         const { dispatch } = this.props
         dispatch(fetchPostsIfNeeded())
-    }
-
-    sortMovies(sortByDate) {
-        if (sortByDate) {
-            this.state.movies.sort((a, b) => a.release_date < b.release_date);
-        }
-        else {
-            this.state.movies.sort((a, b) => a.vote_average < b.vote_average);
-        }
-        
-        this.forceUpdate();
     }
 
     render() {
@@ -46,8 +30,7 @@ class App extends Component {
             <div>
                 <ErrorBoundary>
                     <VisibleAppHeader />
-                    <VisibleStatusBar moviesCount={moviesCount} 
-                                OnSortingChange={this.sortMovies}/>
+                    <VisibleStatusBar moviesCount={moviesCount} />
                     <VisibleMovies movies={movies} 
                                 lastUpdated={lastUpdated} 
                                 isFetching={isFetching}

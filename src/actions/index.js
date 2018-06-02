@@ -87,6 +87,26 @@ const shouldFetchPosts = (state, key) => {
     return posts.didInvalidate
 }
 
+export const sortMovies = (sortByDate) => (dispatch, getState) => {
+    let state = getState();
+    let key = state.moviesCacheKeys;
+    let movies = state.moviesBySearch[key];
+
+    if (movies == undefined || movies.items.length == 0){
+        return
+    }
+
+    if (sortByDate) {
+        movies.items.sort((a, b) => a.release_date < b.release_date);
+    }
+    else {
+        movies.items.sort((a, b) => a.vote_average < b.vote_average);
+    }
+
+    let wrapper = {}
+    wrapper.data = movies.items
+    dispatch(receivePosts(key, wrapper))
+}
 
 export const fetchPostsIfNeeded = (movieGenre, search) => (dispatch, getState) => {
     let options = getState().searchOptions
