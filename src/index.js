@@ -1,26 +1,30 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
-import {createStore, applyMiddleware} from 'redux'
+import {createStore, combineReducers, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
-import reducer from './reducers'
+import createHistory from 'history/createBrowserHistory'
+import appReducers from './reducers'
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 import './index.css'
 import App from './app/App'
 
-const middleware = [ thunk ]
-if (process.env.NODE_ENV !== 'production') {
-    middleware.push(createLogger())
-}
-
+const history = createHistory()
+const middlewares = [ thunk, routerMiddleware(history)]
 const store = createStore(
-    reducer,
-    applyMiddleware(...middleware)
+    combineReducers ({
+        appReducers,
+        routerReducer
+    }),
+    applyMiddleware(...middlewares)
 )
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <ConnectedRouter history={history}>
+            <App />
+        </ConnectedRouter>
     </Provider>, 
     document.getElementById('root')
 )

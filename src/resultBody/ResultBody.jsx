@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../resultBody/resultBody.css';
 import MovieItem from '../movieItem/MovieItem';
+import { Browser as Router, Route } from 'react-router-dom'
 
 class ResultBody extends Component {
     constructor(props){
@@ -10,6 +11,7 @@ class ResultBody extends Component {
     render() {
         const {isFetching, isEmpty, movies, onMovieClick} = this.props;
         return(
+            <Router>
             <div>
                 {
                     isEmpty
@@ -19,12 +21,15 @@ class ResultBody extends Component {
                         :   <div className="resultBody">
                             {
                                 movies.map((item) =>
-                                    <MovieItem key={item.title} item={item} onClick={() => onMovieClick(item.id)}/>
+                                    <Rout path="/film/:id" component = {
+                                        <MovieItem key={item.title} item={item} onClick={() => onMovieClick(item.id)}/>
+                                    } />
                                 )
                             }
                             </div>
                 }
             </div>
+            </Router>
         );
     }
 }

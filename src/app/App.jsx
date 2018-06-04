@@ -5,6 +5,7 @@ import { moviesCacheKeys,
          fetchPostsIfNeeded, 
          invalidateMovies,
        } from '../actions'
+import { withRouter } from 'react-router-dom'
 
 import VisibleAppHeader from '../containers/VisibleAppHeader'
 import VisibleStatusBar from '../containers/VisibleStatusBar'
@@ -13,10 +14,6 @@ import AppFooter from '../appFooter/AppFooter'
 import ErrorBoundary from '../common/ErrorBoundary'
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         const { dispatch } = this.props
         dispatch(fetchPostsIfNeeded())
@@ -43,7 +40,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-    const { moviesCacheKeys, moviesBySearch } = state
+    const { moviesCacheKeys, moviesBySearch } = state.appReducers
     const {
         isFetching,
         lastUpdated,
@@ -52,12 +49,13 @@ const mapStateToProps = state => {
         isFetching: true,
         items: []
     }
-
+    const { location } = state.routerReducer
     return {
         moviesCacheKeys,
         movies,
         isFetching,
-        lastUpdated
+        lastUpdated,
+        location
     }
 }
 
