@@ -8,8 +8,8 @@ const getFirstGenre = item => {
 
 const mapStateToProps = state => {
     return {
-        isDetailsView: state.movieDetails.isDetailsView,
-        genre: getFirstGenre(state.movieDetails.item)
+        isDetailsView: state.appReducers.movieDetails.isDetailsView,
+        genre: getFirstGenre(state.appReducers.movieDetails.item)
     }
 }
 

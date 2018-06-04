@@ -88,7 +88,7 @@ const shouldFetchPosts = (state, key) => {
 }
 
 export const sortMovies = (sortByDate) => (dispatch, getState) => {
-    let state = getState();
+    let state = getState().appReducers;
     let key = state.moviesCacheKeys;
     let movies = state.moviesBySearch[key];
 
@@ -109,14 +109,17 @@ export const sortMovies = (sortByDate) => (dispatch, getState) => {
 }
 
 export const fetchPostsIfNeeded = (movieGenre, search) => (dispatch, getState) => {
-    let options = getState().searchOptions
+    let state = getState().appReducers
+    let options = state.searchOptions
     let filter = movieGenre || options.filter
     let query = search || options.searchText
 
     dispatch(buildMoviesCacheKey(filter, query));
 
-    let key = getState().moviesCacheKeys;
-    if (shouldFetchPosts(getState(), key)) {
+    //update state
+    state = getState().appReducers
+    let key = state.moviesCacheKeys;
+    if (shouldFetchPosts(state, key)) {
         return dispatch(fetchPosts(key, filter, query))
     }
 }

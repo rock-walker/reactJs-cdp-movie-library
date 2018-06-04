@@ -6,7 +6,7 @@ import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import createHistory from 'history/createBrowserHistory'
 import appReducers from './reducers'
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
 import './index.css'
 import App from './app/App'
 

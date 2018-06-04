@@ -1,9 +1,11 @@
 import { connect } from 'react-redux'
 import { fetchMovieDetails } from '../actions'
 import ResultBody from '../resultBody/ResultBody'
+//import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state, ownProps) => {
-    let foundMovies = state.moviesBySearch[state.moviesCacheKeys]
+    let appState = state.appReducers
+    let foundMovies = appState.moviesBySearch[appState.moviesCacheKeys]
     return {
         movies: foundMovies ? foundMovies.items : []
     }
