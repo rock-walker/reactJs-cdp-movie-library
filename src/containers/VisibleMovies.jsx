@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { fetchMovieDetails } from '../actions'
 import ResultBody from '../resultBody/ResultBody'
-//import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state, ownProps) => {
     let appState = state.appReducers
@@ -19,9 +19,9 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-const VisibleMovies = connect(
+const VisibleMovies = withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(ResultBody)
+)(ResultBody))
 
 export default VisibleMovies

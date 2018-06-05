@@ -2,10 +2,6 @@ import React, {Component} from 'react';
 import '../searchBar/searchBar.css';
 
 class SearchBar extends Component {
-    constructor(props){
-        super(props);
-    }
-
 	render() {
         const { onSearchChange } = this.props
 		return (

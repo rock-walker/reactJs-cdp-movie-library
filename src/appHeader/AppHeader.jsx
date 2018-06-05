@@ -1,37 +1,36 @@
 import React, {Component} from 'react'
+import { Switch, Route } from 'react-router-dom'
 import '../app/app.css'
 import backgroundImg from '../assets/header.jpg'
 import VisibleSearchBar from '../containers/VisibleSearchBar'
 import VisibleSearchFilter from '../containers/VisibleSearchFilter'
 import MovieDetails from '../movieDetails/MovieDetails'
 
-class AppHeader extends React.PureComponent {
-     constructor(props){
-        super(props);
-    }
-
+class AppHeader extends Component {
     render() {
-        const { isDetailsView, movie, onSearchClick } = this.props;
-        return React.createElement(
-            'header', { className: 'App-header',
-                        style: {backgroundImage: "url(" + backgroundImg + ")"}
-                      },
-            
-                React.createElement(
-                    'h3', { className: 'App-logo', alt: 'logo' },
-                        'netflixroulette'
-                    ),
-
-                 !isDetailsView ? ([
-                    <VisibleSearchBar key="searchBar"/>,
-                    <VisibleSearchFilter key="searchFilter"/>
-                    ]) : ([
-                    <input type="button" value="SEARCH" className="searchNavigator" onClick={() => onSearchClick(false)}/>,
-                    <MovieDetails movie={ movie }/>
-                 ])
-        );
+        const headerStyle = {
+                backgroundImage: 'url(' + backgroundImg + ')'
+            }
+        return (
+            <header className='App-header' style={headerStyle}>
+                <h3 className='App-logo' alt='logo'>netflixroulette</h3>
+                <Switch>
+                    <Route exact path="/" render={() => 
+                        <div>
+                            <VisibleSearchBar/>
+                            <VisibleSearchFilter/>
+                        </div>
+                    } />
+                    <Route path="/film/:id" render={props =>
+                        <div>
+                            <input type="button" value="SEARCH" className="searchNavigator" onClick={() => props.history.push("/")}/>
+                            <MovieDetails />
+                        </div>
+                    }/>
+                </Switch>
+            </header>
+        )
     }
 }
-
 
 export default AppHeader

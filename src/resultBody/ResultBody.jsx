@@ -1,18 +1,11 @@
 import React, {Component} from 'react';
 import '../resultBody/resultBody.css';
 import MovieItem from '../movieItem/MovieItem';
-import { ConnectedRouter } from 'react-router-dom'
-import { Route } from 'react-router'
 
 class ResultBody extends Component {
-    constructor(props){
-        super(props);
-    }
-
     render() {
-        const {isFetching, isEmpty, movies, onMovieClick} = this.props;
+        const {isFetching, isEmpty, movies, onMovieClick, history} = this.props
         return(
-            <Route>
             <div>
                 {
                     isEmpty
@@ -22,15 +15,16 @@ class ResultBody extends Component {
                         :   <div className="resultBody">
                             {
                                 movies.map((item) =>
-                                    <Route path="/film/{item.id}" component = {
-                                        <MovieItem key={item.title} item={item} onClick={() => onMovieClick(item.id)}/>
-                                    } />
+                                    <MovieItem key={item.title} item={item} onClick={() => {
+                                        history.push('/film/'+item.id)
+                                        //onMovieClick(item.id)
+                                        }
+                                    }/>
                                 )
                             }
                             </div>
                 }
             </div>
-            </Route>
         );
     }
 }

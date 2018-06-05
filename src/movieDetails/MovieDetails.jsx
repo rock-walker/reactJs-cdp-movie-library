@@ -1,16 +1,10 @@
-import React, {Component} from 'react';
-import '../movieDetails/movieDetails.css';
-
-class MovieDetails extends Component {
-    constructor(props){
-        super(props);
-    }
-    
-    render() {
-        const { movie } = this.props
-        return (
-            <div className="movieDetails">
-                <img src={movie.poster_path}/>
+import React, {Component} from 'react'
+import '../movieDetails/movieDetails.css'
+import { withRouter } from 'react-router-dom'
+/*
+export const MovieDetails = () => {
+            /*<div className="movieDetails">
+                /*<img src={props.item.poster_path}/>
                 <div className="movieText">
                     <h2>{movie.title}</h2>
                     <span className="rate">{movie.vote_average}</span>
@@ -22,8 +16,16 @@ class MovieDetails extends Component {
                     <p>{movie.overview}</p>
                 </div>
             </div>
-        );
+}*/
+
+class MovieDetails extends Component {
+    render() {
+        const {match} = this.props
+        return (
+            <div className="movieDetails">
+            </div>
+        )
     }
 }
 
-export default MovieDetails
+export default withRouter(MovieDetails)
