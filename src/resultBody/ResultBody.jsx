@@ -4,7 +4,7 @@ import MovieItem from '../movieItem/MovieItem';
 
 class ResultBody extends Component {
     render() {
-        const {isFetching, isEmpty, movies, onMovieClick, history} = this.props
+        const {isFetching, isEmpty, movies, getMovieDetails, history} = this.props
         return(
             <div>
                 {
@@ -16,8 +16,8 @@ class ResultBody extends Component {
                             {
                                 movies.map((item) =>
                                     <MovieItem key={item.title} item={item} onClick={() => {
-                                        history.push('/film/'+item.id)
-                                        //onMovieClick(item.id)
+                                            getMovieDetails(item.id)
+                                            history.push('/film/'+item.id)
                                         }
                                     }/>
                                 )

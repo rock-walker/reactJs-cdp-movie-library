@@ -1,27 +1,26 @@
 import { connect } from 'react-redux'
 import { fetchMovieDetails } from '../actions'
-import ResultBody from '../resultBody/ResultBody'
+import MovieDetails from '../movieDetails/MovieDetails'
 import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state, ownProps) => {
     let appState = state.appReducers
-    let foundMovies = appState.moviesBySearch[appState.moviesCacheKeys]
     return {
-        movies: foundMovies ? foundMovies.items : []
+        movie: appState.movieDetails
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        getMovieDetails: (id) => {
+        onMovieDetails: (id) => {
             dispatch(fetchMovieDetails(id))
         }
     }
 }
 
-const VisibleMovies = withRouter(connect(
+const VisibleMovieDetails = withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(ResultBody))
+)(MovieDetails))
 
-export default VisibleMovies
+export default VisibleMovieDetails
