@@ -17,12 +17,6 @@ class AppHeader extends Component {
             <header className='App-header' style={headerStyle}>
                 <h3 className='App-logo' alt='logo'>netflixroulette</h3>
                 <Switch>
-                    <Route exact path="/" render={() => 
-                        <div>
-                            <VisibleSearchBar/>
-                            <VisibleSearchFilter/>
-                        </div>
-                    } />
                     <Route path="/film/:id" render={props =>
                         <div>
                             <input type="button" value="SEARCH" className="searchNavigator" onClick={
@@ -34,6 +28,12 @@ class AppHeader extends Component {
                             <VisibleMovieDetails />
                         </div>
                     }/>
+                    <Route path="*" render={() => 
+                        <div>
+                            <VisibleSearchBar/>
+                            <VisibleSearchFilter/>
+                        </div>
+                    } />
                 </Switch>
             </header>
         )

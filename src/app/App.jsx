@@ -5,22 +5,20 @@ import { moviesCacheKeys,
          fetchPostsIfNeeded, 
          invalidateMovies,
        } from '../actions'
-import { withRouter } from 'react-router-dom'
+import { Route, Switch } from 'react-router'
 
 import VisibleAppHeader from '../containers/VisibleAppHeader'
 import VisibleStatusBar from '../containers/VisibleStatusBar'
 import VisibleMovies from '../containers/VisibleMovies'
 import AppFooter from '../appFooter/AppFooter'
+import NotFound from '../notFound/NotFound'
+
 import ErrorBoundary from '../common/ErrorBoundary'
+import { withRouter } from 'react-router-dom'
 
 class App extends Component {
-    componentDidMount() {
-        const { dispatch } = this.props
-        dispatch(fetchPostsIfNeeded())
-    }
-
     render() {
-        const { moviesCacheKeys, movies, isFetching, lastUpdated } = this.props;
+        const { moviesCacheKeys, movies, isFetching } = this.props;
         const moviesCount = movies.length;
         const isEmpty = movies.length === 0;
         return (
@@ -28,10 +26,13 @@ class App extends Component {
                 <ErrorBoundary>
                     <VisibleAppHeader />
                     <VisibleStatusBar moviesCount={moviesCount} />
-                    <VisibleMovies movies={movies} 
-                                lastUpdated={lastUpdated} 
+                    <Switch>  
+                        <Route path="/(film|search)?" render = {() => <VisibleMovies movies={movies} 
                                 isFetching={isFetching}
                                 isEmpty={isEmpty}/>
+                            }/>
+                        <Route path="*" component={NotFound}/>
+                    </Switch>
                     <AppFooter />
                 </ErrorBoundary>
             </div>
@@ -43,10 +44,9 @@ const mapStateToProps = state => {
     const { moviesCacheKeys, moviesBySearch } = state.appReducers
     const {
         isFetching,
-        lastUpdated,
         items: movies
     } = moviesBySearch[moviesCacheKeys] || {
-        isFetching: true,
+        isFetching: false,
         items: []
     }
     const { location } = state.routerReducer
@@ -54,9 +54,8 @@ const mapStateToProps = state => {
         moviesCacheKeys,
         movies,
         isFetching,
-        lastUpdated,
         location
     }
 }
 
-export default connect(mapStateToProps)(App)
+export default withRouter(connect(mapStateToProps)(App))
