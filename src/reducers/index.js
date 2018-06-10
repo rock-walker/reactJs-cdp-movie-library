@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { LOCATION_CHANGE } from 'react-router-redux';
 import {
     BUILD_MOVIES_CACHE_KEY, INVALIDATE_MOVIES,
     REQUEST_POSTS, RECEIVE_POSTS,
@@ -40,8 +41,7 @@ const movies = (state = {
                 ...state,
                 isFetching: false,
                 didInvalidate: false,
-                items: action.movies,
-                lastUpdated: action.receivedAt
+                items: action.movies
             }
         default:
             return state
@@ -62,7 +62,6 @@ const movieDetails = (state = { }, action) => {
                 isFetching: false,
                 didInvalidate: false,
                 item: action.movie,
-                lastUpdated: action.receivedAt,
                 isDetailsView: true,
             }
         case SWITCH_HEADER_VIEW:

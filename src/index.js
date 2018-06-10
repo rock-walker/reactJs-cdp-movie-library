@@ -7,6 +7,8 @@ import { createLogger } from 'redux-logger'
 import createHistory from 'history/createBrowserHistory'
 import appReducers from './reducers'
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
+import { Route, Switch } from 'react-router'
+import {NotFound} from './notFound/NotFound'
 import './index.css'
 import App from './app/App'
 
@@ -17,13 +19,14 @@ const store = createStore(
         appReducers,
         routerReducer
     }),
-    applyMiddleware(...middlewares)
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(...middlewares),
 )
 
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <App />
+            <Route component={App}/>
         </ConnectedRouter>
     </Provider>, 
     document.getElementById('root')

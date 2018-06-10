@@ -1,27 +1,25 @@
 import React, {Component} from 'react'
 import '../statusBar/statusBar.css'
+import {Switch, Route} from 'react-router'
 import ResultCount from '../resultCount/ResultCount'
 import VisibleSortBy from '../containers/VisibleSortBy'
 
 class StatusBar extends Component {
-    constructor(props){
-        super(props);
-    }
-
     render() {
-        const { isDetailsView, genre } = this.props
+        const { genre, moviesCount } = this.props
         return (
             <div className="statusBar">
-            {
-                !isDetailsView 
-                    ? (
+                <Switch>
+                    <Route path="/film/:id" render = {() => 
+                        <span>Films by {genre} genre</span>
+                        }/>
+                    <Route path="/" render = {() =>
                         <div>
-                            <ResultCount value={this.props.moviesCount} />
+                            <ResultCount value={moviesCount} />
                             <VisibleSortBy/>
                         </div>
-                    )
-                    : <span>Films by {genre} genre</span>
-            }
+                        }/>
+                </Switch>
             </div>
         )
     }

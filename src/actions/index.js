@@ -27,8 +27,7 @@ export const requestPosts = searchBy => ({
 export const receivePosts = (searchBy, json) => ({
     type: RECEIVE_POSTS,
     searchBy,
-    movies: json.data,
-    receivedAt: Date.now()
+    movies: json.data
 })
 
 export const requestMovie = id => ({

@@ -11,6 +11,6 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-const VisibleSearchBar = connect(null, mapDispatchToProps) (SearchBar)
+const VisibleSearchBar = withRouter(connect(null, mapDispatchToProps) (SearchBar))
 
 export default VisibleSearchBar

@@ -1,16 +1,23 @@
-import React, {Component} from 'react'
+import React from 'react'
 import '../searchButton/searchButton.css'
 
 class SearchButton extends React.PureComponent {
-    constructor(props) {
-        super(props);
+    componentWillMount(nextProps) {
+        const {match, setFilter, onSearch} = this.props
+        let fullQuery = match.params[0]
+        if (fullQuery && fullQuery.match('\/search\/(.+)')) {
+            setFilter('title')
+            onSearch()
+        }
     }
-
     render() {
-        const { onSearch } = this.props
+        const { onSearch, query, history, match } = this.props
         return ( 
             <div>
-               <input type="button" value="SEARCH" className="searchButton" onClick={() => onSearch()}/>
+               <input type="button" value="SEARCH" className="searchButton" onClick={ () => {
+                    history.push("/search/" + query)
+                    onSearch()
+                }}/>
             </div>
         );
     }

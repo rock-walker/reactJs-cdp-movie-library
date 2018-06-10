@@ -5,7 +5,6 @@ import AppHeader from '../appHeader/AppHeader'
 
 const mapStateToProps = state => {
     return {
-        isDetailsView: state.appReducers.movieDetails.isDetailsView,
         movie: state.appReducers.movieDetails.item
     }
 }
