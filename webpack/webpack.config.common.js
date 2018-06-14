@@ -1,9 +1,10 @@
 const path = require('path');
+const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const idDevMod = process.env.NODE_ENV === 'development';
+const isDevMod = process.env.NODE_ENV === 'development';
 
 module.exports = {
     mode: process.env.NODE_ENV,
@@ -56,7 +57,7 @@ module.exports = {
 
     plugins: [
         isDevMod ? new webpack.NamedModulesPlugin() 
-                : new webpack.HashedModuleIdsPlugin(),
+                 : new webpack.HashedModuleIdsPlugin(),
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: 'Production',
