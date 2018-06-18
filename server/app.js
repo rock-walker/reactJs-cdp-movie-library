@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require('express');
 
 const app = express();
 
@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'development') {
     app.use(webpackHotMiddleware(compiler.compilers.find(c => c.name === 'client')));
     app.use(webpackHotServerMiddleware(compiler));
 } else {
-    const serverRenderer = require('../public/js/serverRenderer');
+    const serverRenderer = require('../public/js/serverRenderer').default;
     app.use(express.static('public'));
     app.use(serverRenderer());
 }

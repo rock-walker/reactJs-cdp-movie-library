@@ -1,10 +1,13 @@
-import React from 'react'
-import { hydrate } from 'react-dom'
+import React from 'react';
+import { hydrate } from 'react-dom';
+import { ConnectedRouter } from 'react-router-redux';
 
-import Root from './Root'
+import App from './app/App'; 
 
-const root = {
-    <Root />
-}
+const root = (
+    <App 
+        Router={ConnectedRouter}
+    />
+);
 
-hydrate(root, document.getElementById('root'))
+hydrate(root, document.getElementById('root'));

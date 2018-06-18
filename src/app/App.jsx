@@ -1,3 +1,5 @@
+import 'isomorphic-fetch'
+import 'babel-polyfill'
 import React, { Component } from 'react'
 import '../app/app.css'
 import { connect } from 'react-redux'
