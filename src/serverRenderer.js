@@ -7,7 +7,7 @@ import configureStore from './modules/configureStore';
 //import createHistory from 'history/createBrowserHistory'
 import { routerMiddleware } from 'react-router-redux';
 
-function renderHTML(html) {
+function renderHTML(html, preloadedState) {
     return ` 
     <!doctype html>
     <html>
@@ -25,7 +25,7 @@ function renderHTML(html) {
         </body>
     </html>
     `;
-}
+};
 
 export default function serverRenderer() {
     return (req, res) => {
@@ -47,6 +47,7 @@ export default function serverRenderer() {
 
         const htmlString = renderToString(root); 
         const preloadedState = store.getState();
-        res.send(renderHTML(htmlString, preloadedState));
+        const html = renderHTML(htmlString, preloadedState);
+        res.send(html);
     };
-}
+};

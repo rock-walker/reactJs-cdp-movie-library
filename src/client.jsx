@@ -1,12 +1,17 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { ConnectedRouter } from 'react-router-redux';
+import { BrowserRouter } from 'react-router-dom';
 
-import App from './app/App'; 
+import Root from './Root';
+import configureStore from './modules/configureStore';
+
+const store = configureStore(window.PRELOADED_STATE);
 
 const root = (
-    <App 
-        Router={ConnectedRouter}
+    <Root 
+        Router={BrowserRouter}
+        store = {store}
     />
 );
 
