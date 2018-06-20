@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import '../movieDetails/movieDetails.css'
+import styles from './movieDetails.css'
 
 class MovieDetails extends Component {
     render() {
@@ -10,15 +10,15 @@ class MovieDetails extends Component {
                 isFetching ?
                     (<h2>Loading...</h2>)
                 :
-                <div className="movieDetails">
+                <div className={styles.movieDetails}>
                     <img src={item.poster_path}/>
-                    <div className="movieText">
+                    <div className={styles.movieText}>
                         <h2>{item.title}</h2>
-                        <span className="rate">{item.vote_average}</span>
-                        <p className="awards">{item.genres.join(' & ')}</p>
+                        <span className={styles.rate}>{item.vote_average}</span>
+                        <p className={styles.awards}>{item.genres.join(' & ')}</p>
                         <p>
-                            <span className="releaseYear">{new Date(item.release_date).getFullYear()}</span>
-                            <span className="duration">{item.runtime} min</span>
+                            <span className={styles.releaseYear}>{new Date(item.release_date).getFullYear()}</span>
+                            <span className={styles.duration}>{item.runtime} min</span>
                         </p>
                         <p>{item.overview}</p>
                     </div>    

@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import styles from './searchFilter.css';
-import VisibleSearchButton from '../containers/VisibleSearchButton';
+import React, {Component} from 'react'
+import styles from './searchFilter.css'
+import VisibleSearchButton from '../containers/VisibleSearchButton'
 
 class SearchFilter extends React.Component {
     constructor(props) {

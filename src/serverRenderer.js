@@ -48,7 +48,6 @@ export default function serverRenderer() {
         const htmlString = renderToString(root); 
         const preloadedState = store.getState();
         const html = renderHTML(htmlString, preloadedState);
-        console.log(html);
         res.send(html);
     };
 };

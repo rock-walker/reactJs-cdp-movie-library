@@ -14,8 +14,8 @@ class AppHeader extends Component {
         }
 
         return (
-            <header className={styles.AppHeader} style={headerStyle}>
-                <h3 className={styles.AppLogo} alt='logo'>netflixroulette</h3>
+            <header className={styles.header} style={headerStyle}>
+                <h3 className={styles.logo} alt='logo'>netflixroulette</h3>
                 <Switch>
                     <Route path="/film/:id" render={props =>
                         <div>
