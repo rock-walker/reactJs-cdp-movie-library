@@ -1,7 +1,7 @@
 import 'isomorphic-fetch'
 import 'babel-polyfill'
 import React, { Component } from 'react'
-import '../app/app.css'
+import styles from './app.css'
 import { connect } from 'react-redux'
 import { moviesCacheKeys, 
          fetchPostsIfNeeded, 

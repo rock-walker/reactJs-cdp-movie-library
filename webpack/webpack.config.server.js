@@ -13,14 +13,20 @@ module.exports = merge(common, {
     },
 
     module: {
-    rules: [
-      {
-        test: /\.css$/,
-        include: /src/,
-        use: [
-          'css-loader/locals', // It doesn't embed CSS but only exports the identifier mappings.
-        ],
-      },
-    ],
+      rules: [
+        {
+          test: /\.css$/,
+          include: /src/,
+          use: [
+          {
+            loader:'css-loader/locals', // It doesn't embed CSS but only exports the identifier mappings.\
+            options: {
+                modules: true,
+                localIdentName: '[name]-[hash:5]',
+            },
+          }
+          ],
+        },
+      ],
   },
 });

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../searchButton/searchButton.css'
+import styles from './searchButton.css'
 
 class SearchButton extends React.PureComponent {
     componentWillMount(nextProps) {
@@ -14,7 +14,7 @@ class SearchButton extends React.PureComponent {
         const { onSearch, query, history, match } = this.props
         return ( 
             <div>
-               <input type="button" value="SEARCH" className="searchButton" onClick={ () => {
+               <input type="button" value="SEARCH" className={styles.searchButton} onClick={ () => {
                     history.push("/search/" + query)
                     onSearch()
                 }}/>
