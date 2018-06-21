@@ -1,15 +1,14 @@
-import { createStore, applyMiddleware } from 'redux';
-import rootReducer from '../modules';
+import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
+import rootReducer from '../modules'
 
-//const middlewares = [ thunk , routerMiddleware(history)]
-
-export default (initialState) => {
+export default (initialState, routerMiddleware) => {
+    const middlewares = routerMiddleware ? [thunk, routerMiddleware] : [thunk]
     const store = createStore(
         rootReducer,
         initialState,
         //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-        applyMiddleware(thunk) //(...middlewares)
+        applyMiddleware(...middlewares)
     );
     return store;
-};
+}

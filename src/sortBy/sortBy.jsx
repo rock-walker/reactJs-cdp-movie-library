@@ -1,12 +1,11 @@
 import React from 'react'
-import styles from '../searchFilter/searchFilter.css'
-import styles1 from '../statusBar/statusBar.css'
+import styles from './sortBy.css'
 
 class SortBy extends React.PureComponent {
     render() {
         const { onSort } = this.props
         return (
-            <div className={styles.searchby}>
+            <div className={styles.root}>
                 <span className={styles.title}>Sort by</span>
                 <label>
                     <input type="radio" value="date" id="date" name="sorting" onClick={() => onSort(true)}/>

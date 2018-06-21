@@ -9,9 +9,9 @@ import { Route, Switch } from 'react-router-dom'
 import './index.css'
 import App from './app/App'
 
-const Root = ({ Router, location, context, store, history }) => (
+const Root = ({ Router, location, store, history }) => (
     <Provider store={store}>
-        <Router history={history} context={context} location={location}>
+        <Router history={history} location={location}>
             <Route component={App}/>
         </Router>
     </Provider>)

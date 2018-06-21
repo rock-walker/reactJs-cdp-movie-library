@@ -4,16 +4,12 @@ import { StaticRouter } from 'react-router-dom';
 import Root from './Root';
 import configureStore from './modules/configureStore';
 
-//import createHistory from 'history/createBrowserHistory'
-import { routerMiddleware } from 'react-router-redux';
-
 function renderHTML(html, preloadedState) {
     return ` 
     <!doctype html>
     <html>
         <head>
             <meta charset=utf-8>
-            <title>React Server Side Rendering</title>
             ${process.env.NODE_ENV === 'development' ? '' : '<link href="/css/main.css" rel="stylesheet" type="text/css">'}
         </head>
         <body>
@@ -29,19 +25,13 @@ function renderHTML(html, preloadedState) {
 
 export default function serverRenderer() {
     return (req, res) => {
-
-        //const history = createHistory()
-
-        const store = configureStore();
-        const context = {};
+        const store = configureStore(undefined);
 
         const root = (
             <Root
-                context = {context}
                 location = {req.url}
                 Router = {StaticRouter}
                 store = {store}
-                //history = {history}
             />
         );
 
