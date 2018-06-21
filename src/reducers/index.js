@@ -1,5 +1,6 @@
-import { combineReducers } from 'redux';
-import { LOCATION_CHANGE } from 'react-router-redux';
+import { combineReducers } from 'redux'
+import { LOCATION_CHANGE } from 'react-router-redux'
+
 import {
     BUILD_MOVIES_CACHE_KEY, INVALIDATE_MOVIES,
     REQUEST_POSTS, RECEIVE_POSTS,
@@ -7,7 +8,9 @@ import {
     REQUEST_MOVIE, GET_MOVIE_DETAILS,
     SWITCH_HEADER_VIEW,
 
-    SET_FILTER, SET_SEARCH_TEXT
+    SET_FILTER, SET_SEARCH_TEXT,
+
+    moviesSaga
 } from '../actions'
 
 const moviesCacheKeys = (state = 'title', action) => {

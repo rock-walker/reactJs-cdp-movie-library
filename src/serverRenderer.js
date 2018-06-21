@@ -25,7 +25,7 @@ function renderHTML(html, preloadedState) {
 
 export default function serverRenderer() {
     return (req, res) => {
-        const store = configureStore(undefined);
+        const store = configureStore();
 
         const root = (
             <Root
@@ -34,10 +34,16 @@ export default function serverRenderer() {
                 store = {store}
             />
         );
+        
+        store.runSaga().done.then(() => {
+            const htmlString = renderToString(root);
+            const preloadedState = store.getState();
+            const html = renderHTML(htmlString, preloadedState);
+            res.send(html);
+        })
 
-        const htmlString = renderToString(root); 
-        const preloadedState = store.getState();
-        const html = renderHTML(htmlString, preloadedState);
-        res.send(html);
+        renderToString(root);
+        store.close();
+
     };
 };

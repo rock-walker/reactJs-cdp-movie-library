@@ -1,3 +1,5 @@
+import { call, put, all, takeLatest } from 'redux-saga/effects'
+
 export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const REQUEST_MOVIE = 'REQUEST_MOVIE'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
@@ -58,13 +60,20 @@ export const setSearchText = text => ({
 
 const baseUri = 'http://react-cdp-api.herokuapp.com/movies';
 
-export const fetchMovieDetails = id => dispatch => {
-    dispatch(requestMovie(id))
+export function* fetchMovieDetails (id) {
+    const movie = yield call(requestMovie, id)
     let url = baseUri + '/' + id
-    return fetch(url)
-        .then(response => response.json())
-        .then(json => dispatch(receiveMovieDetails(id, json)))
-        .then(state => dispatch(fetchPostsIfNeeded('genres', state.movie.genres[0])))
+    const response = yield call(fetch, url)
+    const moviesData = yield response.json()
+    const movieDetails = yield call(receiveMovieDetails, id, json)
+
+    yield put(fetchPostsIfNeeded, 'genres', state.movie.genres[0])
+        //.then(json => dispatch(receiveMovieDetails(id, json)))
+        //.then(state => dispatch(fetchPostsIfNeeded('genres', state.movie.genres[0])))
+}
+
+export function* watchFetchMovieDetails() {
+    yield takeLatest(GET_MOVIE_DETAILS, fetchMovieDetails)
 }
 
 const fetchPosts = (key, movieGenre, search) => dispatch => {
@@ -121,4 +130,10 @@ export const fetchPostsIfNeeded = (movieGenre, search) => (dispatch, getState) =
     if (shouldFetchPosts(state, key)) {
         return dispatch(fetchPosts(key, filter, query))
     }
+}
+
+export function* moviesSaga() {
+    yield all([
+
+    ])
 }
