@@ -11,11 +11,11 @@ export default (initialState, routerMiddleware) => {
         initialState,
         //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
         applyMiddleware(...middlewares)
-    );
+    )
 
-    sagaMiddleware.run(rootSaga);
-    store.runSaga = () => sagaMiddleware.run(rootSaga);
-    store.close = () => store.dispatch(END);
+    sagaMiddleware.run(rootSaga)
+    store.runSaga = () => sagaMiddleware.run(rootSaga)
+    store.close = () => store.dispatch(END)
 
-    return store;
+    return store
 }

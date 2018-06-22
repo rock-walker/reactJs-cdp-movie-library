@@ -26,7 +26,7 @@ function renderHTML(html, preloadedState) {
 export default function serverRenderer() {
     return (req, res) => {
         const store = configureStore();
-
+        console.log(store.getState())
         const root = (
             <Root
                 location = {req.url}

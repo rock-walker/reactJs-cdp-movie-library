@@ -9,8 +9,6 @@ import {
     SWITCH_HEADER_VIEW,
 
     SET_FILTER, SET_SEARCH_TEXT,
-
-    moviesSaga
 } from '../actions'
 
 const moviesCacheKeys = (state = 'title', action) => {
@@ -111,11 +109,11 @@ const searchOptions = (state = {
     }
 }
 
-const rootReducer = combineReducers({
+const appReducers = combineReducers({
     moviesBySearch,
     moviesCacheKeys,
     movieDetails,
     searchOptions
 })
 
-export default rootReducer
+export default appReducers

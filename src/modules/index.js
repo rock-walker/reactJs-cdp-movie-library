@@ -1,7 +1,9 @@
 import {combineReducers} from 'redux'
-import { routerReducer } from 'react-router-redux'
+import { all } from 'redux-saga/effects'
 
-import {appReducers, moviesSaga} from '../reducers'
+import { routerReducer } from 'react-router-redux'
+import { appReducers } from '../reducers'
+import { moviesSaga } from '../actions'
 
 function* rootSaga() {
     yield all([
@@ -12,9 +14,9 @@ function* rootSaga() {
 const rootReducer = combineReducers ({
         appReducers,
         routerReducer
-    });
+    })
 
-export default {
+export {
     rootReducer,
     rootSaga
 }

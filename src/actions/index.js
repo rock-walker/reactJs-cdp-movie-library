@@ -134,6 +134,6 @@ export const fetchPostsIfNeeded = (movieGenre, search) => (dispatch, getState) =
 
 export function* moviesSaga() {
     yield all([
-
+        watchFetchMovieDetails()
     ])
 }
