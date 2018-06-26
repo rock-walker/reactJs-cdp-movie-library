@@ -5,7 +5,7 @@ import Root from './Root';
 import configureStore from './modules/configureStore';
 
 function renderHTML(html, preloadedState) {
-    return ` 
+  return ` 
     <!doctype html>
     <html>
         <head>
@@ -21,29 +21,28 @@ function renderHTML(html, preloadedState) {
         </body>
     </html>
     `;
-};
+}
 
 export default function serverRenderer() {
-    return (req, res) => {
-        const store = configureStore();
-        
-        const root = (
+  return (req, res) => {
+    const store = configureStore();
+
+    const root = (
             <Root
                 location = {req.url}
                 Router = {StaticRouter}
                 store = {store}
             />
-        );
-        
-        store.runSaga().done.then(() => {
-            const htmlString = renderToString(root);
-            const preloadedState = store.getState();
-            const html = renderHTML(htmlString, preloadedState);
-            res.send(html);
-        })
+    );
 
-        renderToString(root);
-        store.close();
+    store.runSaga().done.then(() => {
+      const htmlString = renderToString(root);
+      const preloadedState = store.getState();
+      const html = renderHTML(htmlString, preloadedState);
+      res.send(html);
+    });
 
-    };
-};
+    renderToString(root);
+    store.close();
+  };
+}
