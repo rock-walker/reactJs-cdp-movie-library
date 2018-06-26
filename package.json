@@ -49,7 +49,9 @@
     "eject": "react-scripts eject",
     "prod": "cross-env NODE_ENV=production node ./server",
     "lint": "eslint ./ --cache --ignore-pattern .gitignore --fix",
-    "flow": "flow"
+    "flow": "flow",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -76,7 +78,12 @@
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.0.15",
-    "webpack-merge": "^4.1.2"
+    "webpack-merge": "^4.1.2",
+    "@storybook/react": "^4.0.0-alpha.10",
+    "@storybook/addon-actions": "^4.0.0-alpha.10",
+    "@storybook/addon-links": "^4.0.0-alpha.10",
+    "@storybook/addons": "^4.0.0-alpha.10",
+    "babel-runtime": "^6.26.0"
   },
   "jest": {
     "moduleNameMapper": {
