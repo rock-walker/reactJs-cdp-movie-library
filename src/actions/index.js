@@ -1,4 +1,4 @@
-import { call, put, all, takeLatest } from 'redux-saga/effects'
+import { call, put, all, takeLatest, select } from 'redux-saga/effects'
 
 export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const REQUEST_MOVIE = 'REQUEST_MOVIE'
@@ -10,53 +10,71 @@ export const SWITCH_HEADER_VIEW = 'SWITCH_HEADER_VIEW'
 export const SET_FILTER = 'SET_FILTER'
 export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT'
 
-export const buildMoviesCacheKey = (movieGenre, search) => ({
-    type: BUILD_MOVIES_CACHE_KEY,
-    movieGenre,
-    search
-})
+export function buildMoviesCacheKey(movieGenre, search) {
+    return {
+        type: BUILD_MOVIES_CACHE_KEY,
+        movieGenre,
+        search
+    }
+}
 
-export const invalidateMovies = searchBy => ({
-    type: INVALIDATE_MOVIES,
-    searchBy
-})
+export function invalidateMovies(searchBy) {
+    return {
+        type: INVALIDATE_MOVIES,
+        searchBy
+    }
+}
 
-export const requestPosts = searchBy => ({
-    type: REQUEST_POSTS,
-    searchBy
-})
+export function requestPosts(searchBy) {
+    return {
+        type: REQUEST_POSTS,
+        searchBy
+    }
+}
 
-export const receivePosts = (searchBy, json) => ({
-    type: RECEIVE_POSTS,
-    searchBy,
-    movies: json.data
-})
+export function receivePosts(searchBy, json) {
+    return {
+        type: RECEIVE_POSTS,
+        searchBy,
+        movies: json.data
+    }
+}
 
-export const requestMovie = id => ({
-    type: REQUEST_MOVIE,
-    id
-})
+export function requestMovie(id) {
+    return {
+        type: REQUEST_MOVIE,
+        id
+    }
+}
 
-export const receiveMovieDetails = (id, json) => ({
-    type: GET_MOVIE_DETAILS,
-    id,
-    movie: json
-})
+export function receiveMovieDetails(id, json) {
+    return {
+        type: GET_MOVIE_DETAILS,
+        id,
+        movie: json
+    }
+}
 
-export const switchHeaderView = isDetails => ({
-    type: SWITCH_HEADER_VIEW,
-    isDetails
-})
+export function switchHeaderView(isDetails) {
+    return {
+        type: SWITCH_HEADER_VIEW,
+        isDetails
+    }
+}
 
-export const setSearchFilter = filter => ({
-    type: SET_FILTER,
-    filter
-})
+export function setSearchFilter(filter) {
+    return {
+        type: SET_FILTER,
+        filter
+    }
+}
 
-export const setSearchText = text => ({
-    type: SET_SEARCH_TEXT,
-    text
-})
+export function setSearchText(text) {
+    return {
+        type: SET_SEARCH_TEXT,
+        text
+    }
+}
 
 const baseUri = 'http://react-cdp-api.herokuapp.com/movies';
 
@@ -64,27 +82,25 @@ export function* fetchMovieDetails (id) {
     const movie = yield call(requestMovie, id)
     let url = baseUri + '/' + id
     const response = yield call(fetch, url)
-    const moviesData = yield response.json()
+    const moviesData = response.json()
     const movieDetails = yield call(receiveMovieDetails, id, json)
 
-    yield put(fetchPostsIfNeeded, 'genres', state.movie.genres[0])
-        //.then(json => dispatch(receiveMovieDetails(id, json)))
-        //.then(state => dispatch(fetchPostsIfNeeded('genres', state.movie.genres[0])))
+    yield call(fetchPostsIfNeeded, 'genres', state.movie.genres[0])
 }
 
 export function* watchFetchMovieDetails() {
     yield takeLatest(GET_MOVIE_DETAILS, fetchMovieDetails)
 }
 
-const fetchPosts = (key, movieGenre, search) => dispatch => {
-    dispatch(requestPosts(key))
+export function* fetchPosts (key, movieGenre, search) {
+    yield put(requestPosts(key))
     let url = baseUri + '?searchBy=' + movieGenre + (search ? ('&search=' + search) : '');
-    return fetch(url)
-        .then(response => response.json())
-        .then(json => dispatch(receivePosts(key, json)))
+    const response = yield call(fetch, url)
+    const data = yield response.json()
+    yield put(receivePosts(key, data))
 }
 
-const shouldFetchPosts = (state, key) => {
+export function shouldFetchPosts (state, key) {
     const posts = state.moviesBySearch[key]
     if (!posts) {
         return true
@@ -95,10 +111,10 @@ const shouldFetchPosts = (state, key) => {
     return posts.didInvalidate
 }
 
-export const sortMovies = (sortByDate) => (dispatch, getState) => {
-    let state = getState().appReducers;
-    let key = state.moviesCacheKeys;
-    let movies = state.moviesBySearch[key];
+export function* sortMovies (sortByDate) {
+    let state = yield select()
+    let key = state.appReducers.moviesCacheKeys
+    let movies = state.appReducers.moviesBySearch[key];
 
     if (movies == undefined || movies.items.length == 0){
         return
@@ -113,27 +129,34 @@ export const sortMovies = (sortByDate) => (dispatch, getState) => {
 
     let wrapper = {}
     wrapper.data = movies.items
-    dispatch(receivePosts(key, wrapper))
+    yield put(receivePosts(key, wrapper))
 }
 
-export const fetchPostsIfNeeded = (movieGenre, search) => (dispatch, getState) => {
-    let state = getState().appReducers
-    let options = state.searchOptions
+export function* watchSortMovies() {
+    yield takeLatest('SORT_MOVIES', sortMovies)
+}
+
+export function* fetchPostsIfNeeded (movieGenre, search) {
+    let state = yield select()
+    let options = state.appReducers.searchOptions
     let filter = movieGenre || options.filter
     let query = search || options.searchText
 
-    dispatch(buildMoviesCacheKey(filter, query));
+    yield put(buildMoviesCacheKey(filter, query))
 
     //update state
-    state = getState().appReducers
-    let key = state.moviesCacheKeys;
-    if (shouldFetchPosts(state, key)) {
-        return dispatch(fetchPosts(key, filter, query))
+    state = yield select()
+    let key = state.appReducers.moviesCacheKeys
+
+    if (shouldFetchPosts(state.appReducers, key)) {
+        yield call(fetchPosts, key, filter, query)
     }
 }
 
 export function* moviesSaga() {
     yield all([
-        watchFetchMovieDetails()
+        watchFetchMovieDetails(),
+        fetchPostsIfNeeded(),
+        watchSortMovies()
     ])
 }

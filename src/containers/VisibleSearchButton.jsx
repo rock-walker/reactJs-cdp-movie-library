@@ -12,17 +12,6 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onSearch: () => {
-            dispatch(fetchPostsIfNeeded())
-        },
-        setFilter: (filter) => {
-            dispatch(setSearchFilter(filter))
-        }
-    }
-}
-
-const VisibleSearchButton = withRouter(connect(mapStateToProps, mapDispatchToProps) (SearchButton))
+const VisibleSearchButton = withRouter(connect(mapStateToProps) (SearchButton))
 
 export default VisibleSearchButton

@@ -1,15 +1,15 @@
 import { connect } from 'react-redux'
-import { sortMovies } from '../actions'
+
 import SortBy from '../sortBy/SortBy'
 
-const mapDispatchToProps = dispatch => {
+//this is temporarily filter, futher need to attach previous sorting state
+//to recover it on UI
+const mapStateToProps = (state) => {
     return {
-        onSort: (byDate) => {
-            dispatch(sortMovies(byDate))
-        }
+        currentSort: state.appReducers.searchOptions.filter
     }
 }
 
-const VisibleSortBy = connect(null, mapDispatchToProps) (SortBy)
+const VisibleSortBy = connect(mapStateToProps) (SortBy)
 
 export default VisibleSortBy
