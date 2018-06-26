@@ -1,22 +1,27 @@
 import React from 'react'
-import '../searchButton/searchButton.css'
+import { fetchPostsIfNeeded,
+         setSearchFilter
+        } from '../actions'
+
+import { call, put } from 'redux-saga/effects'
+import styles from './searchButton.css'
 
 class SearchButton extends React.PureComponent {
     componentWillMount(nextProps) {
-        const {match, setFilter, onSearch} = this.props
+        const {match} = this.props
         let fullQuery = match.params[0]
         if (fullQuery && fullQuery.match('\/search\/(.+)')) {
-            setFilter('title')
-            onSearch()
+            setSearchFilter('title')
+            fetchPostsIfNeeded()
         }
     }
     render() {
-        const { onSearch, query, history, match } = this.props
+        const { query, history, match } = this.props
         return ( 
             <div>
-               <input type="button" value="SEARCH" className="searchButton" onClick={ () => {
+               <input type="button" value="SEARCH" className={styles.searchButton} onClick={ () => {
                     history.push("/search/" + query)
-                    onSearch()
+                    fetchPostsIfNeeded()
                 }}/>
             </div>
         );

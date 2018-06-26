@@ -1,5 +1,7 @@
+import 'isomorphic-fetch'
+import 'babel-polyfill'
 import React, { Component } from 'react'
-import '../app/app.css'
+import styles from './app.css'
 import { connect } from 'react-redux'
 import { moviesCacheKeys, 
          fetchPostsIfNeeded, 
@@ -18,9 +20,9 @@ import { withRouter } from 'react-router-dom'
 
 class App extends Component {
     render() {
-        const { moviesCacheKeys, movies, isFetching } = this.props;
-        const moviesCount = movies.length;
-        const isEmpty = movies.length === 0;
+        const { movies, isFetching } = this.props
+        const moviesCount = movies.length
+        const isEmpty = movies.length === 0
         return (
             <div>
                 <ErrorBoundary>

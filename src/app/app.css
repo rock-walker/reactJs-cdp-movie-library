@@ -1,4 +1,4 @@
-.App-logo {
+.logo {
   height: 40px;
   color: #f55263;
   text-transform: none;
@@ -6,18 +6,14 @@
   margin-top: 0;
 }
 
-.App-header {
+.header {
   padding: 20px 10%;
   color: white;
   text-transform: uppercase;
 }
 
-.App-title {
+.title {
   font-size: 1em;
-}
-
-.App-intro {
-  font-size: large;
 }
 
 .searchNavigator {
@@ -43,6 +39,6 @@ footer {
   flex-shrink: 0;
 }
 
-footer .App-logo {
+footer .AppLogo {
   height: 0;
 }

@@ -8,22 +8,3 @@
 .statusBar p {
     margin: 0;
 }
-
-.statusBar .searchby {
-    float: right;
-    margin: 0;
-    padding-bottom: 10px;
-}
-
-.statusBar .title {
-    margin-top: 0;
-}
-
-.statusBar label {
-    background-color: transparent;
-    margin: 0 10px;
-}
-
-.statusBar input:checked + label {
-    color:#f55263;
-}

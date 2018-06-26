@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import '../searchFilter/searchFilter.css';
-import VisibleSearchButton from '../containers/VisibleSearchButton';
+import React, {Component} from 'react'
+import styles from './searchFilter.css'
+import VisibleSearchButton from '../containers/VisibleSearchButton'
 
 class SearchFilter extends React.Component {
     constructor(props) {
@@ -25,16 +25,16 @@ class SearchFilter extends React.Component {
         const { onFilterClick } = this.props
         const { searchByTitle } = this.state
         return React.createElement(
-            'div', {className: 'searchby'},
+            'div', {className: styles.searchby},
 
                 React.createElement(
-                    'span', {className: 'title'}, 'search by'
+                    'span', {className: styles.title}, 'search by'
                 ),
                 
                 React.createElement(
-                    'label', {className: 'sTitle'},
+                    'label', {className: styles.sTitle},
                     React.createElement(
-                        'input', {type: 'radio', name: 'toggle', checked: searchByTitle, onClick: () => this.toggleSearchFilter(onFilterClick)} ,
+                        'input', {type: 'radio', name: 'toggle', defaultChecked: searchByTitle, onClick: () => this.toggleSearchFilter(onFilterClick)} ,
                     ),
                     React.createElement(
                         'span', null, 'title'
@@ -42,7 +42,7 @@ class SearchFilter extends React.Component {
                 ),
 
                 React.createElement(
-                    'label', {className: 'sGenre'},
+                    'label', {className: styles.sGenre},
                     React.createElement(
                         'input', {type: 'radio', name: 'toggle', checked: !searchByTitle, onClick: () => this.toggleSearchFilter(onFilterClick)} ,
                     ),

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../movieItem/movieItem.css';
+import styles from './movieItem.css';
 
 class MovieItem extends Component {
     constructor(props) {
@@ -19,11 +19,11 @@ class MovieItem extends Component {
         const { item, onClick } = this.props;
 
         return(
-            <div className="movieItem" onClick={ onClick } >
+            <div className={styles.movieItem} onClick={ onClick } >
                 <img src={item.poster_path}/>
-                <div className="movieDescription">
-                    <span className="title">{item.title}</span>
-                    <div className="year">{new Date(item.release_date).getFullYear()}</div>
+                <div className={styles.movieDescription}>
+                    <span className={styles.title}>{item.title}</span>
+                    <div className={styles.year}>{new Date(item.release_date).getFullYear()}</div>
                     <p>{this.concatenateGenres(item.genres)}</p>
                 </div>
             </div>

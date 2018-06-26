@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import '../searchBar/searchBar.css'
+import styles from './searchBar.css'
+import rootStyles from '../app/app.css'
 
 class SearchBar extends Component {
 	render() {
@@ -15,10 +16,10 @@ class SearchBar extends Component {
         }
 		return (
             <div>
-                <h1 className="App-title">Find your movie</h1>
+                <h1 className={rootStyles.title}>Find your movie</h1>
                 <input type="text" defaultValue={query}
                     onChange={(event) => onSearchChange(event.target.value)} 
-                    className="searchBar"/>
+                    className={styles.searchBar}/>
             </div>
         );
     }
