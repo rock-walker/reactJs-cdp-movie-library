@@ -1,8 +1,4 @@
 import { connect } from 'react-redux'
-import { fetchPostsIfNeeded,
-         setSearchFilter,
-         setSearchText
-        } from '../actions'
 import SearchButton from '../searchButton/SearchButton'
 import { withRouter } from 'react-router-dom'
 

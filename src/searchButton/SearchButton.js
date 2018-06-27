@@ -18,7 +18,7 @@ class SearchButton extends React.PureComponent {
   }
 
   render() {
-    const { query, history, match } = this.props;
+    const { query, history } = this.props;
     return (
             <div>
                <input type="button" value="SEARCH" className={styles.searchButton} onClick={ () => {
