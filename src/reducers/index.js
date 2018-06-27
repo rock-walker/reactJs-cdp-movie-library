@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { LOCATION_CHANGE } from 'react-router-redux';
+import { List } from 'immutable'
 
 import {
   BUILD_MOVIES_CACHE_KEY, INVALIDATE_MOVIES,
@@ -42,7 +43,7 @@ const movies = (state = {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        items: action.movies,
+        items: List(action.movies),
       };
     default:
       return state;

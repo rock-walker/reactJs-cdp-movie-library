@@ -8,6 +8,7 @@ import { moviesCacheKeys,
          invalidateMovies,
        } from '../actions'
 import { Route, Switch } from 'react-router'
+import { List } from 'immutable'
 
 import VisibleAppHeader from '../containers/VisibleAppHeader'
 import VisibleStatusBar from '../containers/VisibleStatusBar'
@@ -21,8 +22,8 @@ import { withRouter } from 'react-router-dom'
 class App extends Component {
     render() {
         const { movies, isFetching } = this.props
-        const moviesCount = movies.length
-        const isEmpty = movies.length === 0
+        const moviesCount = movies.size
+        const isEmpty = movies.isEmpty()
         return (
             <div>
                 <ErrorBoundary>
@@ -46,12 +47,13 @@ const mapStateToProps = state => {
     const { moviesCacheKeys, moviesBySearch } = state.appReducers
     const {
         isFetching,
-        items: movies
+        items: sourceMovies
     } = moviesBySearch[moviesCacheKeys] || {
         isFetching: false,
         items: []
     }
     const { location } = state.routerReducer
+    const movies = sourceMovies.length ===0 ? List() : sourceMovies
     return {
         moviesCacheKeys,
         movies,
