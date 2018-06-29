@@ -22,13 +22,13 @@ storiesOf('Button', module)
       </span>
     </Button>
   ));
-/*
+
 const store = configureStore()
 
 storiesOf('SearchButton', module)
     .addDecorator(story => <Provider store={store}>{story()}</Provider>)
     .add('default state', () => <SearchButton onClick={action('clicked')}>Search</SearchButton>)
-*/
+
 
 storiesOf('Sort by element', module)
     .add('default state', () => <SortBy/>)
